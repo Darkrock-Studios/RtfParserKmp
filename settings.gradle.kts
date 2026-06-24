@@ -18,3 +18,4 @@ rootProject.name = "rtfparserkmp"
 
 include(":rtf-core")
 include(":rtf-reader")
+include(":rtf-writer")
