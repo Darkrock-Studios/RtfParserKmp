@@ -1,0 +1,3 @@
+plugins {
+    id("rtf.multiplatform")
+}

@@ -1,0 +1,19 @@
+.gradle/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+.kotlin/
+local.properties
+
+# Upstream library, kept only for reference during the port; deleted before release.
+/reference/
+
+# IDE
+.idea/
+*.iml
+.fleet/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

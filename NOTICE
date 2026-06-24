@@ -1,0 +1,13 @@
+RtfParserKmp
+Copyright 2026 The RtfParserKmp contributors
+
+This product includes software derived from RTFParserKit
+(https://github.com/joniles/rtfparserkit), a Kotlin Multiplatform port of which
+forms the basis of this library.
+
+  RTFParserKit
+  Copyright 2013 Jon Iles
+  Licensed under the Apache License, Version 2.0.
+
+Ported source files retain their original copyright headers. This software is
+licensed under the Apache License, Version 2.0; see the LICENSE file.
