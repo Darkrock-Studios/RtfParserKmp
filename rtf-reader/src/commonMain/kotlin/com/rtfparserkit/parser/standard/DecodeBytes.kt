@@ -18,5 +18,17 @@ package com.rtfparserkit.parser.standard
 
 internal expect fun platformDecodeBytes(bytes: ByteArray, offset: Int, length: Int, charsetName: String): String
 
-internal fun decodeBytes(bytes: ByteArray, offset: Int, length: Int, charsetName: String): String =
-    if (charsetName == "UTF-8") bytes.decodeToString(offset, offset + length) else platformDecodeBytes(bytes, offset, length, charsetName)
+internal fun decodeBytes(bytes: ByteArray, offset: Int, length: Int, charsetName: String): String {
+    if (charsetName == "UTF-8") return bytes.decodeToString(offset, offset + length)
+
+    val table = SINGLE_BYTE_TABLES[charsetName]
+    if (table != null) {
+        val sb = StringBuilder(length)
+        for (i in offset until offset + length) {
+            sb.append(table[bytes[i].toInt() and 0xFF])
+        }
+        return sb.toString()
+    }
+
+    return platformDecodeBytes(bytes, offset, length, charsetName)
+}
