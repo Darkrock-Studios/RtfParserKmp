@@ -45,13 +45,11 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Android SDK
-        if: matrix.os == 'ubuntu-latest'
-        uses: android-actions/setup-android@v3
-
       - name: Install Android platform
         if: matrix.os == 'ubuntu-latest'
-        run: sdkmanager "platforms;android-36"
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36"
 
       - uses: gradle/actions/setup-gradle@v5
 
