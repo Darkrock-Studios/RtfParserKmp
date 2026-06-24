@@ -45,7 +45,8 @@ kotlin {
     tvosArm64()
     tvosSimulatorArm64()
     watchosX64()
-    watchosArm64()
+    // watchosArm64 (arm64_32) is intentionally omitted: it is the only 32-bit Apple target, and its
+    // differing pointer width prevents commonizing the CFString-based decoder in shared appleMain.
     watchosSimulatorArm64()
     watchosDeviceArm64()
     linuxX64()
