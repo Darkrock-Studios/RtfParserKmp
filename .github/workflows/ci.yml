@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux (jvm/js/wasm/native)
+            os: ubuntu-latest
+            # Host-runnable test tasks (run across every module) + Linux native.
+            tasks: >-
+              jvmTest jsTest wasmJsTest wasmWasiTest linuxX64Test
+              linuxArm64MainKlibrary
+              :sample-cli:linkDebugExecutableLinuxX64
+          - name: macos (apple)
+            os: macos-latest
+            # Simulator/host targets run tests; device targets are compile-verified.
+            tasks: >-
+              macosArm64Test iosSimulatorArm64Test tvosSimulatorArm64Test watchosSimulatorArm64Test
+              iosArm64MainKlibrary tvosArm64MainKlibrary watchosDeviceArm64MainKlibrary
+              :sample-cli:linkDebugExecutableMacosArm64
+          - name: windows (mingw)
+            os: windows-latest
+            tasks: >-
+              jvmTest mingwX64Test
+              :sample-cli:linkDebugExecutableMingwX64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build & test
+        run: ./gradlew ${{ matrix.tasks }} --stacktrace
+        shell: bash
