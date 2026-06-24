@@ -8,6 +8,9 @@ local.properties
 # Upstream library, kept only for reference during the port; deleted before release.
 /reference/
 
+# One-off multi-agent orchestration scripts (session tooling, not build inputs).
+/tools/*.workflow.mjs
+
 # IDE
 .idea/
 *.iml
