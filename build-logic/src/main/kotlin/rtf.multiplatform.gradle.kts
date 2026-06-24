@@ -6,7 +6,7 @@ plugins {
     `maven-publish`
 }
 
-group = "io.github.adamwbrown.rtf"
+group = "com.darkrockstudios"
 version = "0.1.0-SNAPSHOT"
 
 kotlin {
@@ -15,7 +15,7 @@ kotlin {
     jvm()
 
     androidLibrary {
-        namespace = "io.github.adamwbrown.rtf." + project.name.replace("-", "")
+        namespace = "com.darkrockstudios.libs.rtfparserkmp." + project.name.replace("-", "")
         compileSdk = 36
         minSdk = 21
         withHostTest { }

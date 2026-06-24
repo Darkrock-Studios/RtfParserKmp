@@ -17,7 +17,7 @@ const dataDir = join(
 
 const outFile = join(
   repoRoot,
-  "rtf-reader/src/commonTest/kotlin/com/rtfparserkit/parser/standard/Corpus.kt",
+  "rtf-reader/src/commonTest/kotlin/com/darkrockstudios/libs/rtfparserkmp/parser/standard/Corpus.kt",
 );
 
 // Fixtures whose text runs select a legacy multibyte CJK codepage (932/936/949/950)
@@ -71,7 +71,7 @@ const header = `/*
 `;
 
 let body = `${header}
-package com.rtfparserkit.parser.standard
+package com.darkrockstudios.libs.rtfparserkmp.parser.standard
 
 internal data class CorpusCase(
     val name: String,

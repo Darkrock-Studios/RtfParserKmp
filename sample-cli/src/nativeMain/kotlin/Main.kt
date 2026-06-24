@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import com.rtfparserkit.converter.RtfToMarkdown
-import com.rtfparserkit.converter.RtfTextExtractor
-import com.rtfparserkit.io.KotlinxIoRtfSource
-import com.rtfparserkit.parser.RtfListener
-import com.rtfparserkit.parser.standard.StandardRtfParser
-import com.rtfparserkit.writer.convertMarkdownToRtf
+import com.darkrockstudios.libs.rtfparserkmp.converter.RtfToMarkdown
+import com.darkrockstudios.libs.rtfparserkmp.converter.RtfTextExtractor
+import com.darkrockstudios.libs.rtfparserkmp.io.KotlinxIoRtfSource
+import com.darkrockstudios.libs.rtfparserkmp.parser.RtfListener
+import com.darkrockstudios.libs.rtfparserkmp.parser.standard.StandardRtfParser
+import com.darkrockstudios.libs.rtfparserkmp.writer.convertMarkdownToRtf
 import kotlinx.io.buffered
 import kotlinx.io.files.Path
 import kotlinx.io.files.SystemFileSystem

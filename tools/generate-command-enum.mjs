@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 const SRC = "reference/rtfparserkit/src/main/java/com/rtfparserkit/rtf/Command.java";
-const OUT = "rtf-core/src/commonMain/kotlin/com/rtfparserkit/rtf/Command.kt";
+const OUT = "rtf-core/src/commonMain/kotlin/com/darkrockstudios/libs/rtfparserkmp/rtf/Command.kt";
 
 // Kotlin keywords that the parser treats specially at declaration/enum-entry position and so cannot
 // be used as a bare identifier here. Includes hard keywords plus modifier/soft keywords (e.g.
@@ -66,7 +66,7 @@ const header = `/*
  * limitations under the License.
  */
 
-package com.rtfparserkit.rtf
+package com.darkrockstudios.libs.rtfparserkmp.rtf
 
 // Generated from the upstream RTFParserKit Command.java by tools/generate-command-enum.mjs.
 // Do not edit by hand; regenerate instead.

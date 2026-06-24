@@ -1,6 +1,6 @@
 # RtfParserKmp
 
-[![CI](https://github.com/Dark-Rock-Studios/RtfParserKmp/actions/workflows/ci.yml/badge.svg)](https://github.com/Dark-Rock-Studios/RtfParserKmp/actions/workflows/ci.yml)
+[![CI](https://github.com/Darkrock-Studios/RtfParserKmp/actions/workflows/ci.yml/badge.svg)](https://github.com/Darkrock-Studios/RtfParserKmp/actions/workflows/ci.yml)
 
 An idiomatic **Kotlin Multiplatform** RTF reader and writer.
 
@@ -16,7 +16,7 @@ dependency-free byte source).
 
 ## Modules
 
-Each module publishes as its own Maven artifact under the group `io.github.adamwbrown.rtf`, so you
+Each module publishes as its own Maven artifact under the group `com.darkrockstudios`, so you
 depend only on what you use.
 
 | Artifact | Purpose | Runtime deps |
@@ -31,9 +31,9 @@ A non-published `sample-cli` (Kotlin/Native) demonstrates the stack end to end.
 
 ```kotlin
 dependencies {
-    implementation("io.github.adamwbrown.rtf:rtf-reader:0.1.0")
-    implementation("io.github.adamwbrown.rtf:rtf-writer:0.1.0")        // optional, for export
-    implementation("io.github.adamwbrown.rtf:rtf-io-kotlinx:0.1.0")    // optional, for streaming I/O
+    implementation("com.darkrockstudios:rtf-reader:0.1.0")
+    implementation("com.darkrockstudios:rtf-writer:0.1.0")        // optional, for export
+    implementation("com.darkrockstudios:rtf-io-kotlinx:0.1.0")    // optional, for streaming I/O
 }
 ```
 
@@ -50,9 +50,9 @@ Mac Roman and friends), and UTF-8 — runs identically on **every** target with 
 ### Read
 
 ```kotlin
-import com.rtfparserkit.parser.parseRtf
-import com.rtfparserkit.converter.extractPlainText
-import com.rtfparserkit.converter.convertToMarkdown
+import com.darkrockstudios.libs.rtfparserkmp.parser.parseRtf
+import com.darkrockstudios.libs.rtfparserkmp.converter.extractPlainText
+import com.darkrockstudios.libs.rtfparserkmp.converter.convertToMarkdown
 
 val bytes: ByteArray = /* your .rtf */
 val text: String = extractPlainText(bytes)
@@ -68,9 +68,9 @@ Implement `RtfListener` (every method has a no-op default) for streaming, or `wh
 ### Write
 
 ```kotlin
-import com.rtfparserkit.writer.convertMarkdownToRtf
-import com.rtfparserkit.writer.writeRtf
-import com.rtfparserkit.model.*
+import com.darkrockstudios.libs.rtfparserkmp.writer.convertMarkdownToRtf
+import com.darkrockstudios.libs.rtfparserkmp.writer.writeRtf
+import com.darkrockstudios.libs.rtfparserkmp.model.*
 
 val rtf: String = convertMarkdownToRtf("This is **bold** and _italic_.")
 
@@ -85,8 +85,8 @@ cleanly with the reader.
 ### Streaming I/O
 
 ```kotlin
-import com.rtfparserkit.io.asRtfSource          // kotlinx-io or okio
-import com.rtfparserkit.parser.StandardRtfParser
+import com.darkrockstudios.libs.rtfparserkmp.io.asRtfSource          // kotlinx-io or okio
+import com.darkrockstudios.libs.rtfparserkmp.parser.StandardRtfParser
 
 StandardRtfParser().parse(source.asRtfSource(), myListener)   // source: kotlinx-io Source / okio BufferedSource
 ```
@@ -107,9 +107,9 @@ Windows runners.
 
 ## Current limitations
 
-- **Legacy multibyte CJK** (codepages 932/936/949/950 via `\'xx`) decodes on **JVM, Android, JS, and
-  wasmJs** (the web targets via `TextDecoder`). The remaining native targets (Apple, Linux, Windows,
-  wasmWasi) throw for those legacy bytes — an Apple `CFString` actual is planned. `\uN` Unicode (what
+- **Legacy multibyte CJK** (codepages 932/936/949/950 via `\'xx`) decodes on **JVM, Android, JS, wasmJs,
+  and all Apple targets** (web via `TextDecoder`, Apple via `CFString`). Only the remaining native
+  targets — Linux, Windows (mingw), and wasmWasi — throw for those legacy bytes. `\uN` Unicode (what
   modern Word/LibreOffice/Pages emit) and all single-byte codepages work on every target.
 
 ## License

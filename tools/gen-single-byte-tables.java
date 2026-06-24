@@ -1,7 +1,7 @@
 // Copyright 2026 The RtfParserKmp contributors
 //
 // Single-file JDK program (run: java tools/gen-single-byte-tables.java).
-// Generates rtf-reader/src/commonMain/kotlin/com/rtfparserkit/parser/standard/SingleByteTables.kt
+// Generates rtf-reader/src/commonMain/kotlin/com/darkrockstudios/libs/rtfparserkmp/parser/standard/SingleByteTables.kt
 // by decoding bytes 0..255 with each named single-byte charset and emitting a 256-char mapping.
 
 import java.io.IOException;
@@ -69,7 +69,7 @@ public class gen_single_byte_tables {
         out.append(" * See the License for the specific language governing permissions and\n");
         out.append(" * limitations under the License.\n");
         out.append(" */\n\n");
-        out.append("package com.rtfparserkit.parser.standard\n\n");
+        out.append("package com.darkrockstudios.libs.rtfparserkmp.parser.standard\n\n");
         out.append("internal val SINGLE_BYTE_TABLES: Map<String, String> = mapOf(\n");
         out.append(entries);
         out.append(")\n");
