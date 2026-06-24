@@ -16,6 +16,8 @@ kotlin {
             dependsOn(commonMain.get())
         }
         wasmWasiMain.get().dependsOn(fallbackMain)
-        nativeMain.get().dependsOn(fallbackMain)
+        linuxMain.get().dependsOn(fallbackMain)
+        mingwMain.get().dependsOn(fallbackMain)
+        // appleMain carries its own CFString decoder (see src/appleMain).
     }
 }
