@@ -26,8 +26,10 @@ depend only on what you use.
 | `rtf-writer` | `RtfWriter` (styled model → RTF), `MarkdownToRtf` | `rtf-core` |
 | `rtf-io-kotlinx` | `RtfSource` over a kotlinx-io `Source` | `rtf-core`, kotlinx-io |
 | `rtf-io-okio` | `RtfSource` over an Okio `BufferedSource` | `rtf-core`, Okio |
+| `rtf-compose` | RTF → Compose `AnnotatedString` (`rtfToAnnotatedString`) | `rtf-core`, `rtf-reader`, Compose `ui-text` |
 
-A non-published `sample-cli` (Kotlin/Native) demonstrates the stack end to end.
+A non-published `sample-cli` (Kotlin/Native) demonstrates the stack end to end. `rtf-compose` targets the
+Compose-supported subset (JVM, Android, wasmJs, iOS, macOS); the other modules cover the full matrix.
 
 ```kotlin
 dependencies {
@@ -89,6 +91,16 @@ import com.darkrockstudios.libs.rtfparserkmp.io.asRtfSource          // kotlinx-
 import com.darkrockstudios.libs.rtfparserkmp.parser.StandardRtfParser
 
 StandardRtfParser().parse(source.asRtfSource(), myListener)   // source: kotlinx-io Source / okio BufferedSource
+```
+
+### Compose
+
+```kotlin
+import com.darkrockstudios.libs.rtfparserkmp.compose.rtfToAnnotatedString
+import androidx.compose.foundation.text.BasicText
+
+val styled: AnnotatedString = rtfToAnnotatedString(bytes)   // bold/italic/underline -> SpanStyle
+// BasicText(styled)
 ```
 
 ### CLI
