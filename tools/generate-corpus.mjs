@@ -20,6 +20,22 @@ const outFile = join(
   "rtf-reader/src/commonTest/kotlin/com/rtfparserkit/parser/standard/Corpus.kt",
 );
 
+// Fixtures whose text runs select a legacy multibyte CJK codepage (932/936/949/950)
+// and therefore route through platformDecodeBytes. These are decoded by Java charsets
+// on jvm/android and the WHATWG TextDecoder on js/wasmJs, but are unsupported on the
+// NotImplementedError fallback targets. Identified empirically: a fixture is multibyte
+// CJK iff its decode throws NotImplementedError on a fallback target.
+const MULTIBYTE_CJK = new Set([
+  "test10001Encoding",
+  "test950Encoding",
+  "testJapaneseJisEncoding",
+  "testJapaneseJisEncodingTwoFonts",
+  "testKoreanEncoding",
+  "testMultiByteHex",
+  "testNecCharacters",
+  "testUnicode",
+]);
+
 const names = readdirSync(dataDir)
   .filter((f) => f.endsWith(".rtf"))
   .map((f) => f.slice(0, -4))
@@ -33,6 +49,7 @@ for (const name of names) {
     name,
     rtfBase64: rtf.toString("base64"),
     expectedXmlBase64: xml.toString("base64"),
+    multibyteCjk: MULTIBYTE_CJK.has(name),
   });
 }
 
@@ -60,6 +77,7 @@ internal data class CorpusCase(
     val name: String,
     val rtfBase64: String,
     val expectedXmlBase64: String,
+    val multibyteCjk: Boolean,
 )
 
 internal object Corpus {
@@ -71,6 +89,7 @@ for (const c of cases) {
   body += `            name = ${JSON.stringify(c.name)},\n`;
   body += `            rtfBase64 = ${JSON.stringify(c.rtfBase64)},\n`;
   body += `            expectedXmlBase64 = ${JSON.stringify(c.expectedXmlBase64)},\n`;
+  body += `            multibyteCjk = ${c.multibyteCjk},\n`;
   body += `        ),\n`;
 }
 

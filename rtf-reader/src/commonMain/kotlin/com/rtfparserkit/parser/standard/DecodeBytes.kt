@@ -18,6 +18,14 @@ package com.rtfparserkit.parser.standard
 
 internal expect fun platformDecodeBytes(bytes: ByteArray, offset: Int, length: Int, charsetName: String): String
 
+internal fun whatwgLabel(charsetName: String): String? = when (charsetName) {
+    "MS932", "SJIS", "Shift_JIS" -> "shift_jis"
+    "Cp936", "MS936" -> "gbk"
+    "Cp949" -> "euc-kr"
+    "Cp950" -> "big5"
+    else -> null
+}
+
 internal fun decodeBytes(bytes: ByteArray, offset: Int, length: Int, charsetName: String): String {
     if (charsetName == "UTF-8") return bytes.decodeToString(offset, offset + length)
 

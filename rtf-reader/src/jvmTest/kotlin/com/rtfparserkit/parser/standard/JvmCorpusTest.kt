@@ -22,15 +22,19 @@ import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlin.test.Test
 import kotlin.test.fail
 
+/**
+ * Asserts every corpus fixture, including the multibyte-CJK cases, against the
+ * JVM-generated oracle XML. The oracle reflects Java's charset decoders and is only
+ * valid where those decoders run (jvm/android), so this assertion lives in jvmTest.
+ */
 @OptIn(ExperimentalEncodingApi::class)
-class CorpusTest {
+class JvmCorpusTest {
     @Test
     fun corpusMatchesUpstreamDump() {
         val failures = StringBuilder()
         var passed = 0
 
-        val cases = Corpus.cases.filter { !it.multibyteCjk }
-        for (case in cases) {
+        for (case in Corpus.cases) {
             val rtf = Base64.decode(case.rtfBase64)
             val expected = Base64.decode(case.expectedXmlBase64).decodeToString()
 
@@ -51,7 +55,7 @@ class CorpusTest {
         }
 
         if (failures.isNotEmpty()) {
-            fail("Corpus: $passed/${cases.size} non-CJK cases passing.$failures")
+            fail("Corpus: $passed/${Corpus.cases.size} passing.$failures")
         }
     }
 

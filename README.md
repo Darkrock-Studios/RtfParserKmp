@@ -107,9 +107,10 @@ Windows runners.
 
 ## Current limitations
 
-- **Legacy multibyte CJK** (codepages 932/936/949/950 via `\'xx`) decodes on the **JVM only** for now;
-  other targets throw for those bytes. `\uN` Unicode (what modern Word/LibreOffice/Pages emit) and all
-  single-byte codepages work everywhere. Web (`TextDecoder`) and Apple (`CFString`) actuals are planned.
+- **Legacy multibyte CJK** (codepages 932/936/949/950 via `\'xx`) decodes on **JVM, Android, JS, and
+  wasmJs** (the web targets via `TextDecoder`). The remaining native targets (Apple, Linux, Windows,
+  wasmWasi) throw for those legacy bytes — an Apple `CFString` actual is planned. `\uN` Unicode (what
+  modern Word/LibreOffice/Pages emit) and all single-byte codepages work on every target.
 
 ## License
 
