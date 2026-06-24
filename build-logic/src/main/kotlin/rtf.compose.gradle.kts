@@ -3,11 +3,10 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 plugins {
     kotlin("multiplatform")
     id("com.android.kotlin.multiplatform.library")
-    `maven-publish`
 }
 
 group = "com.darkrockstudios"
-version = "0.1.0-SNAPSHOT"
+version = (findProperty("library.version") as String?) ?: "0.1.0-SNAPSHOT"
 
 kotlin {
     applyDefaultHierarchyTemplate()

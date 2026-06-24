@@ -1,5 +1,6 @@
 plugins {
     id("rtf.compose")
+    id("rtf.publish")
 }
 
 kotlin {
