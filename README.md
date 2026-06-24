@@ -26,7 +26,7 @@ depend only on what you use.
 | `rtf-writer` | `RtfWriter` (styled model → RTF), `MarkdownToRtf` | `rtf-core` |
 | `rtf-io-kotlinx` | `RtfSource` over a kotlinx-io `Source` | `rtf-core`, kotlinx-io |
 | `rtf-io-okio` | `RtfSource` over an Okio `BufferedSource` | `rtf-core`, Okio |
-| `rtf-compose` | RTF → Compose `AnnotatedString` (`rtfToAnnotatedString`) | `rtf-core`, `rtf-reader`, Compose `ui-text` |
+| `rtf-compose` | RTF ↔ Compose `AnnotatedString` (`rtfToAnnotatedString` / `annotatedStringToRtf`) | `rtf-core`, `rtf-reader`, `rtf-writer`, Compose `ui-text` |
 
 A non-published `sample-cli` (Kotlin/Native) demonstrates the stack end to end. `rtf-compose` targets the
 Compose-supported subset (JVM, Android, wasmJs, iOS, macOS); the other modules cover the full matrix.
@@ -101,6 +101,8 @@ import androidx.compose.foundation.text.BasicText
 
 val styled: AnnotatedString = rtfToAnnotatedString(bytes)   // bold/italic/underline -> SpanStyle
 // BasicText(styled)
+
+val rtf: String = annotatedStringToRtf(styled)             // and back the other way
 ```
 
 ### CLI

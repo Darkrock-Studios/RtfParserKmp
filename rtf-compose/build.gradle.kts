@@ -8,6 +8,7 @@ kotlin {
         commonMain.dependencies {
             api(project(":rtf-core"))
             api(project(":rtf-reader"))
+            api(project(":rtf-writer"))
             api(libs.compose.ui.text)
         }
     }
