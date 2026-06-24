@@ -39,8 +39,8 @@ dependencies {
 
 ## Supported targets
 
-JVM · JS (IR, browser + node) · wasmJs · wasmWasi · iOS (x64/arm64/simulatorArm64) · macOS (x64/arm64) ·
-tvOS · watchOS · Linux (x64/arm64) · Windows (mingwX64).
+JVM · Android · JS (IR, browser + node) · wasmJs · wasmWasi · iOS (x64/arm64/simulatorArm64) ·
+macOS (x64/arm64) · tvOS · watchOS · Linux (x64/arm64) · Windows (mingwX64).
 
 Core parsing — including `\uN` Unicode, all single-byte codepages (Windows-125x, CP437/850/874,
 Mac Roman and friends), and UTF-8 — runs identically on **every** target with zero platform code.
@@ -112,7 +112,6 @@ Windows runners.
   single-byte codepages work everywhere. Web (`TextDecoder`) and Apple (`CFString`) actuals are planned.
 - **`RtfToMarkdown`** tracks emphasis as flat toggles, not group-scoped — group-scoped formatting can
   leak; a group-aware version is planned.
-- **Android** target is not yet wired (it would reuse the JVM charset path); planned.
 
 ## License
 

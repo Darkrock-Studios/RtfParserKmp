@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     kotlin("multiplatform")
+    id("com.android.kotlin.multiplatform.library")
     `maven-publish`
 }
 
@@ -12,6 +13,13 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     jvm()
+
+    androidLibrary {
+        namespace = "io.github.adamwbrown.rtf." + project.name.replace("-", "")
+        compileSdk = 36
+        minSdk = 21
+        withHostTest { }
+    }
 
     js(IR) {
         browser()
