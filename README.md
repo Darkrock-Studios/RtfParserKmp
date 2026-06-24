@@ -1,6 +1,6 @@
 # RtfParserKmp
 
-[![CI](https://github.com/adamwbrown/RtfParserKmp/actions/workflows/ci.yml/badge.svg)](https://github.com/adamwbrown/RtfParserKmp/actions/workflows/ci.yml)
+[![CI](https://github.com/Dark-Rock-Studios/RtfParserKmp/actions/workflows/ci.yml/badge.svg)](https://github.com/Dark-Rock-Studios/RtfParserKmp/actions/workflows/ci.yml)
 
 An idiomatic **Kotlin Multiplatform** RTF reader and writer.
 
