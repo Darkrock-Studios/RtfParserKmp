@@ -1,5 +1,6 @@
 # RtfParserKmp
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.darkrockstudios/rtf-reader?label=Maven%20Central)](https://central.sonatype.com/artifact/com.darkrockstudios/rtf-reader)
 [![CI](https://github.com/Darkrock-Studios/RtfParserKmp/actions/workflows/ci.yml/badge.svg)](https://github.com/Darkrock-Studios/RtfParserKmp/actions/workflows/ci.yml)
 
 An idiomatic **Kotlin Multiplatform** RTF reader and writer.
