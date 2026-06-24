@@ -20,16 +20,13 @@ import com.rtfparserkit.converter.convertToMarkdown
 import com.rtfparserkit.converter.extractPlainText
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 /**
  * Round-trips Markdown through [convertMarkdownToRtf] and back via the reader's converters.
  *
- * `RtfToMarkdown` tracks emphasis as a flat, document-global toggle that is only cleared by an
- * explicit `\b0`/`\i0`, which [RtfWriter] never emits — it relies on group scoping for resets.
- * So emphasis "leaks" forward once opened: the converter is faithful only when an emphasized span
- * runs to the end of the document. Tests that need an exact equality therefore put emphasis last;
- * the plain-text channel ([extractPlainText]) round-trips exactly regardless of style placement.
+ * [RtfWriter] groups each run in its own `{...}` and `RtfToMarkdown` scopes formatting to those
+ * braces, so interleaved emphasis recovers exactly — an emphasized span no longer needs to run to
+ * the end of the document. The plain-text channel ([extractPlainText]) round-trips exactly too.
  */
 class MarkdownRoundTripTest {
     private fun roundTripMarkdown(markdown: String): String =
@@ -51,8 +48,8 @@ class MarkdownRoundTripTest {
     }
 
     @Test
-    fun trailingCombinedBoldItalicNormalizesToNestedSpans() {
-        assertEquals("A **_strong finish_**", roundTripMarkdown("A ***strong*** finish"))
+    fun combinedBoldItalicNormalizesToNestedSpans() {
+        assertEquals("A **_strong_** finish", roundTripMarkdown("A ***strong*** finish"))
     }
 
     @Test
@@ -67,10 +64,15 @@ class MarkdownRoundTripTest {
     }
 
     @Test
+    fun interleavedEmphasisRoundTripsExactly() {
+        val markdown = "This is **bold** and _italic_ and plain."
+        assertEquals(markdown, roundTripMarkdown(markdown))
+    }
+
+    @Test
     fun emphasisIsPresentAfterRoundTrip() {
-        val back = roundTripMarkdown("This is **bold** and _italic_.")
-        assertTrue(back.contains("**"), "expected bold marker, got: $back")
-        assertTrue(back.contains("_"), "expected italic marker, got: $back")
+        val markdown = "This is **bold** and _italic_."
+        assertEquals(markdown, roundTripMarkdown(markdown))
     }
 
     @Test

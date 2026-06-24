@@ -63,9 +63,6 @@ class RoundTripTest {
     fun emphasisSurvivesWriteThenMarkdown() {
         val rtf = RtfWriter().write(document).encodeToByteArray()
         val markdown = convertToMarkdown(rtf)
-        assertTrue(markdown.contains("**"), "expected bold marker, got: $markdown")
-        assertTrue(markdown.contains("_"), "expected italic marker, got: $markdown")
-        assertTrue(markdown.contains("bold"), "expected bolded word, got: $markdown")
-        assertTrue(markdown.contains("italic"), "expected italicized word, got: $markdown")
+        assertEquals("This is **bold** and _italic_.\n\nSecond paragraph.", markdown)
     }
 }

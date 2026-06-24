@@ -110,8 +110,6 @@ Windows runners.
 - **Legacy multibyte CJK** (codepages 932/936/949/950 via `\'xx`) decodes on the **JVM only** for now;
   other targets throw for those bytes. `\uN` Unicode (what modern Word/LibreOffice/Pages emit) and all
   single-byte codepages work everywhere. Web (`TextDecoder`) and Apple (`CFString`) actuals are planned.
-- **`RtfToMarkdown`** tracks emphasis as flat toggles, not group-scoped — group-scoped formatting can
-  leak; a group-aware version is planned.
 
 ## License
 

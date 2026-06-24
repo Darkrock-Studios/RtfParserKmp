@@ -42,4 +42,22 @@ class RtfToMarkdownTest {
         assertEquals("plain", md)
         assertFalse(md.contains("Arial"))
     }
+
+    @Test
+    fun groupScopedEmphasisDoesNotLeak() {
+        val md = convert("{\\rtf1\\ansi {\\b bold} normal {\\i italic} end}")
+        assertEquals("**bold** normal _italic_ end", md)
+    }
+
+    @Test
+    fun nestedGroupEmphasisRestoresOuterState() {
+        val md = convert("{\\rtf1\\ansi {\\b bold {\\i both} stillBold} plain}")
+        assertEquals("**bold _both_ stillBold** plain", md)
+    }
+
+    @Test
+    fun explicitToggleAndGroupScopingCombine() {
+        val md = convert("{\\rtf1\\ansi {\\b on\\b0  off} after}")
+        assertEquals("**on** off after", md)
+    }
 }

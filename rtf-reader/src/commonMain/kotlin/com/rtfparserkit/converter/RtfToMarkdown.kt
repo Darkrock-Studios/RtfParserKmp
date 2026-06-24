@@ -31,17 +31,22 @@ import com.rtfparserkit.rtf.CommandType
  * [Command.par] yields a paragraph break (blank line), [Command.line] a hard break, and
  * [Command.tab] a tab. Markdown-significant characters in body text are escaped.
  *
- * Emphasis is tracked as flat document-global toggles honoring explicit `\b0`/`\i0`, not as
- * group-scoped state; bold/italic set inside a group are not restored at the closing brace.
+ * Character formatting is group-scoped: a snapshot of the bold/italic state is pushed at each
+ * group start and restored at the matching group end, mirroring how RTF braces scope formatting
+ * (e.g. `{\b bold}` resets bold at the `}`). Explicit `\b0`/`\i0` toggles still mutate the
+ * current state within a group.
  */
 class RtfToMarkdown : RtfListener {
     private val builder = StringBuilder()
     private var currentDestination = Command.rtf
     private val destinationStack = ArrayDeque<Command>()
+    private val formattingStack = ArrayDeque<Formatting>()
 
     private var bold = false
     private var italic = false
-    private var emphasisOpen = false
+
+    /** Emphasis markers actually emitted into [builder] and not yet closed, in open order. */
+    private val openMarkers = ArrayDeque<Marker>()
 
     /** The Markdown accumulated so far, with trailing whitespace trimmed. */
     val markdown: String
@@ -52,10 +57,15 @@ class RtfToMarkdown : RtfListener {
 
     override fun processGroupStart() {
         destinationStack.addLast(currentDestination)
+        formattingStack.addLast(Formatting(bold, italic))
     }
 
     override fun processGroupEnd() {
         currentDestination = destinationStack.removeLast()
+        val restored = formattingStack.removeLast()
+        bold = restored.bold
+        italic = restored.italic
+        closeDisabledMarkers()
     }
 
     override fun processString(string: String) {
@@ -98,31 +108,55 @@ class RtfToMarkdown : RtfListener {
 
     private fun setBold(value: Boolean) {
         if (value != bold) {
-            closeEmphasis()
             bold = value
+            if (!value) closeDisabledMarkers()
         }
     }
 
     private fun setItalic(value: Boolean) {
         if (value != italic) {
-            closeEmphasis()
             italic = value
+            if (!value) closeDisabledMarkers()
         }
     }
 
+    private fun isActive(marker: Marker): Boolean = when (marker) {
+        Marker.BOLD -> bold
+        Marker.ITALIC -> italic
+    }
+
+    /** Opens any marker whose style is active but not yet emitted, in bold-then-italic order. */
     private fun openEmphasis() {
-        if (!emphasisOpen && (bold || italic)) {
-            if (bold) builder.append("**")
-            if (italic) builder.append("_")
-            emphasisOpen = true
+        if (bold && Marker.BOLD !in openMarkers) {
+            builder.append(Marker.BOLD.text)
+            openMarkers.addLast(Marker.BOLD)
+        }
+        if (italic && Marker.ITALIC !in openMarkers) {
+            builder.append(Marker.ITALIC.text)
+            openMarkers.addLast(Marker.ITALIC)
+        }
+    }
+
+    /** Closes every open marker whose style is now off, reopening any still-active span nested above it. */
+    private fun closeDisabledMarkers() {
+        val deepestDisabled = openMarkers.indexOfFirst { !isActive(it) }
+        if (deepestDisabled < 0) return
+        val reopen = ArrayDeque<Marker>()
+        while (openMarkers.size > deepestDisabled) {
+            val top = openMarkers.removeLast()
+            builder.append(top.text)
+            if (isActive(top)) reopen.addLast(top)
+        }
+        while (reopen.isNotEmpty()) {
+            val m = reopen.removeLast()
+            builder.append(m.text)
+            openMarkers.addLast(m)
         }
     }
 
     private fun closeEmphasis() {
-        if (emphasisOpen) {
-            if (italic) builder.append("_")
-            if (bold) builder.append("**")
-            emphasisOpen = false
+        while (openMarkers.isNotEmpty()) {
+            builder.append(openMarkers.removeLast().text)
         }
     }
 
@@ -133,6 +167,13 @@ class RtfToMarkdown : RtfListener {
             out.append(ch)
         }
         return out.toString()
+    }
+
+    private class Formatting(val bold: Boolean, val italic: Boolean)
+
+    private enum class Marker(val text: String) {
+        BOLD("**"),
+        ITALIC("_"),
     }
 
     private companion object {
