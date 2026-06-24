@@ -19,3 +19,6 @@ rootProject.name = "rtfparserkmp"
 include(":rtf-core")
 include(":rtf-reader")
 include(":rtf-writer")
+include(":rtf-io-kotlinx")
+include(":rtf-io-okio")
+include(":sample-cli")
