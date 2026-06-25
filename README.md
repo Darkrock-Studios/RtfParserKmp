@@ -85,6 +85,10 @@ val rtf2: String = writeRtf(doc)
 The writer emits 7-bit ASCII (non-ASCII as `\uN`), so it has no charset dependency and round-trips
 cleanly with the reader.
 
+For *authoring* rich documents — fonts, colors, headings, page breaks, hyperlinks, bookmarks, and
+paragraph layout — build an `RtfDocument` and serialize it with `RtfDocumentWriter`. See
+[**Writing rich RTF**](docs/WRITING-RICH-RTF.md).
+
 ### Streaming I/O
 
 ```kotlin

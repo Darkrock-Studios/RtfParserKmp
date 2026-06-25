@@ -66,23 +66,7 @@ class RtfWriter {
     }
 
     private fun appendEscapedText(sb: StringBuilder, text: String) {
-        for (ch in text) {
-            val code = ch.code
-            when {
-                ch == '\\' -> sb.append("\\\\")
-                ch == '{' -> sb.append("\\{")
-                ch == '}' -> sb.append("\\}")
-                ch == '\t' -> sb.append("\\tab ")
-                ch == '\n' -> sb.append("\\line ")
-                ch == '\r' -> {}
-                code > 127 -> {
-                    val signed = if (code > 32767) code - 65536 else code
-                    sb.append("\\u").append(signed).append("?")
-                }
-                code < 32 -> sb.append("\\u").append(code).append("?")
-                else -> sb.append(ch)
-            }
-        }
+        sb.appendRtfEscaped(text)
     }
 }
 
