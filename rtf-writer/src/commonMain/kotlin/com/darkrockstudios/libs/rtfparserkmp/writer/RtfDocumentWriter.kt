@@ -156,7 +156,7 @@ class RtfDocumentWriter {
         // The bookmark switch is a literal backslash-l, escaped as '\\l' in the RTF stream.
         if (link.kind == RtfHyperlinkKind.Bookmark) sb.append("\\\\l ")
         sb.append('"')
-        sb.appendRtfEscaped(link.target)
+        sb.appendRtfHyperlinkTarget(link.target)
         sb.append("\"}{\\fldrslt {")
         for (inline in link.content) {
             writeInline(sb, inline, ctx)

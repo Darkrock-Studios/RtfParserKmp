@@ -136,6 +136,26 @@ class RtfDocumentWriterTest {
     }
 
     @Test
+    fun escapesQuotesInHyperlinkTarget() {
+        val doc = RtfDocument(
+            blocks = listOf(
+                RtfParagraph(
+                    listOf(
+                        RtfHyperlink(
+                            target = "https://x/?q=\"a\"",
+                            content = listOf(RtfTextRun("link")),
+                        ),
+                    ),
+                ),
+            ),
+            defaultFont = TIMES,
+        )
+        val rtf = RtfDocumentWriter().write(doc)
+        // Each quote is field-escaped to \" and the field backslash is RTF-escaped, reaching the stream as \\".
+        assertTrue("q=\\\\\"a\\\\\"" in rtf, "quote in the URL must be field-escaped, got: $rtf")
+    }
+
+    @Test
     fun bookmarkAndLocalLink() {
         val doc = RtfDocument(
             blocks = listOf(

@@ -42,3 +42,32 @@ internal fun StringBuilder.appendRtfEscaped(text: String) {
         }
     }
 }
+
+/**
+ * Appends a HYPERLINK field argument (the quoted URL / bookmark name). On top of [appendRtfEscaped]'s
+ * rules, the double-quote and backslash are escaped for the field-code layer as `\"` and `\\` so a
+ * quote inside the target cannot prematurely close the field's quoted argument. Each field-level
+ * backslash is then itself RTF-escaped, so one source `"` reaches the stream as `\\"` and one source
+ * `\` as `\\\\`. Targets without `"` or `\` are emitted identically to [appendRtfEscaped].
+ */
+internal fun StringBuilder.appendRtfHyperlinkTarget(target: String) {
+    for (ch in target) {
+        val code = ch.code
+        when {
+            ch == '"' -> append("\\\\\"")
+            ch == '\\' -> append("\\\\\\\\")
+            ch == '{' -> append("\\{")
+            ch == '}' -> append("\\}")
+            ch == '\t' -> append("\\tab ")
+            ch == '\n' -> append("\\line ")
+            ch == '\r' -> {}
+            code > 127 -> {
+                val signed = if (code > 32767) code - 65536 else code
+                append("\\u").append(signed).append("?")
+            }
+
+            code < 32 -> append("\\u").append(code).append("?")
+            else -> append(ch)
+        }
+    }
+}
