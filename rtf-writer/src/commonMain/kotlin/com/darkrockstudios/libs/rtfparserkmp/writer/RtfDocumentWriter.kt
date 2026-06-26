@@ -26,8 +26,7 @@ package com.darkrockstudios.libs.rtfparserkmp.writer
  */
 class RtfDocumentWriter {
     fun write(document: RtfDocument): String {
-        val fonts = collectFonts(document)
-        val colors = collectColors(document)
+        val (fonts, colors) = collectResources(document)
         val fontIndex = fonts.withIndex().associate { (i, font) -> font to i }
         // Color index 0 is the reserved "auto" entry, so referenced colors start at 1.
         val colorIndex = colors.withIndex().associate { (i, color) -> color to i + 1 }
@@ -177,17 +176,15 @@ class RtfDocumentWriter {
         sb.append('}')
     }
 
-    private fun collectFonts(document: RtfDocument): List<RtfFont> {
-        val fonts = LinkedHashSet<RtfFont>()
-        fonts.add(document.defaultFont)
-        forEachRunInBlocks(document.blocks) { run -> run.style.font?.let(fonts::add) }
-        return fonts.toList()
-    }
-
-    private fun collectColors(document: RtfDocument): List<RtfColor> {
+    /** One pass over the document gathering the fonts (including the default) and colors it references. */
+    private fun collectResources(document: RtfDocument): Pair<List<RtfFont>, List<RtfColor>> {
+        val fonts = LinkedHashSet<RtfFont>().apply { add(document.defaultFont) }
         val colors = LinkedHashSet<RtfColor>()
-        forEachRunInBlocks(document.blocks) { run -> run.style.color?.let(colors::add) }
-        return colors.toList()
+        forEachRunInBlocks(document.blocks) { run ->
+            run.style.font?.let(fonts::add)
+            run.style.color?.let(colors::add)
+        }
+        return fonts.toList() to colors.toList()
     }
 
     private fun forEachRunInBlocks(blocks: List<RtfBlock>, action: (RtfTextRun) -> Unit) {
