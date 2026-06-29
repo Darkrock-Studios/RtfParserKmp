@@ -1,0 +1,199 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>rtf-core</title>
+<link href="../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../scripts/sourceset_dependencies.js" async></script>
+<link href="../styles/style.css" rel="Stylesheet">
+<link href="../styles/main.css" rel="Stylesheet">
+<link href="../styles/prism.css" rel="Stylesheet">
+<link href="../styles/logo-styles.css" rel="Stylesheet">
+<link href="../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../scripts/main.js" defer></script>
+<script type="text/javascript" src="../scripts/prism.js" async></script>
+<script type="text/javascript" src="../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../index.html" tabindex="1">
+                    RtfParserKmp
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":rtf-core/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":rtf-core/commonMain" data-filter=":rtf-core/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    RtfParserKmp
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" id="content" pageids="rtf-core::////PointingToDeclaration//-138448461">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>rtf-core</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-core/commonMain"><p class="paragraph">The shared, dependency-free foundation every other RtfParserKmp module builds on. It defines the RTF event model, the listener and source abstractions, the full command dictionary, and the styled-text document model — all in <code class="lang-kotlin">commonMain</code>, with no platform code.</p><p class="paragraph">You rarely depend on <code class="lang-kotlin">rtf-core</code> directly: pull in <code class="lang-kotlin">rtf-reader</code> to parse or <code class="lang-kotlin">rtf-writer</code> to emit, and this module comes along transitively. Depend on it on its own only when you build your own parser front-end or listener.</p><h2 class="">The event model</h2><p class="paragraph">Parsing an RTF stream produces a flat sequence of <code class="lang-kotlin">RtfEvent</code>s — <code class="lang-kotlin">DocumentStart</code>/<code class="lang-kotlin">DocumentEnd</code>, <code class="lang-kotlin">GroupStart</code>/<code class="lang-kotlin">GroupEnd</code>, <code class="lang-kotlin">Text</code>, <code class="lang-kotlin">Command</code>, and <code class="lang-kotlin">BinaryBytes</code>. Consume it either by implementing <code class="lang-kotlin">RtfListener</code> (every method has a no-op default, so override only what you care about) or by walking the sealed <code class="lang-kotlin">RtfEvent</code> list that <code class="lang-kotlin">rtf-reader</code>'s <code class="lang-kotlin">parseRtf</code> returns.</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">class TitleGrabber : RtfListener {<br>    val sb = StringBuilder()<br>    override fun processString(string: String) { sb.append(string) }<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h2 class="">Commands</h2><p class="paragraph"><code class="lang-kotlin">Command</code> is the exhaustive enum of RTF control words, each tagged with a <code class="lang-kotlin">CommandType</code> — <code class="lang-kotlin">Symbol</code>, <code class="lang-kotlin">Flag</code>, <code class="lang-kotlin">Toggle</code>, <code class="lang-kotlin">Value</code>, <code class="lang-kotlin">Destination</code>, or <code class="lang-kotlin">Encoding</code> — describing how the parser treats it.</p><h2 class="">Reading from your own bytes</h2><p class="paragraph"><code class="lang-kotlin">RtfSource</code> is the one-byte-at-a-time input the parser reads from, with <code class="lang-kotlin">unread</code> for lookahead. <code class="lang-kotlin">ByteArrayRtfSource</code> wraps a <code class="lang-kotlin">ByteArray</code>; the <code class="lang-kotlin">rtf-io-kotlinx</code> and <code class="lang-kotlin">rtf-io-okio</code> modules adapt streaming sources.</p><h2 class="">Styled-text model</h2><p class="paragraph"><code class="lang-kotlin">StyledDocument</code> → <code class="lang-kotlin">Paragraph</code> → <code class="lang-kotlin">TextRun</code>, where each run carries a <code class="lang-kotlin">CharacterStyle</code> and each paragraph a <code class="lang-kotlin">ParagraphStyle</code>. It is the common currency between the reader's converters and the writer.</p></div></div>
+  </div>
+  <h2 class="">Packages</h2>
+  <div class="table"><a data-name="-1468971473%2FPackages%2F-138448461" anchor-label="com.darkrockstudios.libs.rtfparserkmp.model" id="-1468971473%2FPackages%2F-138448461" data-filterable-set=":rtf-core/commonMain"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":rtf-core/commonMain" data-filterable-set=":rtf-core/commonMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.darkrockstudios.libs.rtfparserkmp.model/index.html">com.darkrockstudios.libs.rtfparserkmp.model</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1468971473%2FPackages%2F-138448461"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag common-like">common</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="-1468971473%2FPackages%2F-138448461" anchor-label="com.darkrockstudios.libs.rtfparserkmp.model" id="-1468971473%2FPackages%2F-138448461" data-filterable-set=":rtf-core/commonMain"></a>
+            <p class="paragraph">The styled-text document model — <code class="lang-kotlin">StyledDocument</code>, <code class="lang-kotlin">Paragraph</code>, <code class="lang-kotlin">TextRun</code>, <code class="lang-kotlin">CharacterStyle</code>, <code class="lang-kotlin">ParagraphStyle</code> — shared by the reader and writer.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="223184221%2FPackages%2F-138448461" anchor-label="com.darkrockstudios.libs.rtfparserkmp.parser" id="223184221%2FPackages%2F-138448461" data-filterable-set=":rtf-core/commonMain"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":rtf-core/commonMain" data-filterable-set=":rtf-core/commonMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.darkrockstudios.libs.rtfparserkmp.parser/index.html">com.darkrockstudios.libs.rtfparserkmp.parser</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="223184221%2FPackages%2F-138448461"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag common-like">common</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="223184221%2FPackages%2F-138448461" anchor-label="com.darkrockstudios.libs.rtfparserkmp.parser" id="223184221%2FPackages%2F-138448461" data-filterable-set=":rtf-core/commonMain"></a>
+            <p class="paragraph">The event model and parsing inputs: <code class="lang-kotlin">RtfEvent</code>, <code class="lang-kotlin">RtfListener</code>, <code class="lang-kotlin">RtfSource</code>, and <code class="lang-kotlin">ByteArrayRtfSource</code>.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1838066346%2FPackages%2F-138448461" anchor-label="com.darkrockstudios.libs.rtfparserkmp.rtf" id="1838066346%2FPackages%2F-138448461" data-filterable-set=":rtf-core/commonMain"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":rtf-core/commonMain" data-filterable-set=":rtf-core/commonMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.darkrockstudios.libs.rtfparserkmp.rtf/index.html">com.darkrockstudios.libs.rtfparserkmp.rtf</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1838066346%2FPackages%2F-138448461"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag common-like">common</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1838066346%2FPackages%2F-138448461" anchor-label="com.darkrockstudios.libs.rtfparserkmp.rtf" id="1838066346%2FPackages%2F-138448461" data-filterable-set=":rtf-core/commonMain"></a>
+            <p class="paragraph">The RTF command dictionary: the <code class="lang-kotlin">Command</code> enum and its <code class="lang-kotlin">CommandType</code> classification.</p>
+          </span></div>
+      </div>
+    </div>
+<a data-name="1217724855%2FPackages%2F-138448461" anchor-label="com.darkrockstudios.libs.rtfparserkmp.utils" id="1217724855%2FPackages%2F-138448461" data-filterable-set=":rtf-core/commonMain"></a>
+    <div class="table-row table-row_platform-tagged" data-filterable-current=":rtf-core/commonMain" data-filterable-set=":rtf-core/commonMain">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="com.darkrockstudios.libs.rtfparserkmp.utils/index.html">com.darkrockstudios.libs.rtfparserkmp.utils</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1217724855%2FPackages%2F-138448461"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right platform-tags--wrapper">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag common-like">common</div>
+            </div>
+          </div>
+        </div>
+        <div><span class="brief-comment"><a data-name="1217724855%2FPackages%2F-138448461" anchor-label="com.darkrockstudios.libs.rtfparserkmp.utils" id="1217724855%2FPackages%2F-138448461" data-filterable-set=":rtf-core/commonMain"></a>
+            <p class="paragraph">Small shared helpers, such as <code class="lang-kotlin">HexUtils</code> for parsing <code class="lang-kotlin">\'xx</code> hex escapes.</p>
+          </span></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

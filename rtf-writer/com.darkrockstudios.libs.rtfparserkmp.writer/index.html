@@ -1,0 +1,520 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.darkrockstudios.libs.rtfparserkmp.writer</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../index.html" tabindex="1">
+                    RtfParserKmp
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":rtf-writer/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":rtf-writer/commonMain" data-filter=":rtf-writer/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    RtfParserKmp
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="package" id="content" pageids="rtf-writer::com.darkrockstudios.libs.rtfparserkmp.writer////PointingToDeclaration//-1535997945">
+  <div class="breadcrumbs"><a href="../index.html">rtf-writer</a><span class="delimiter">/</span><span class="current">com.darkrockstudios.libs.rtfparserkmp.writer</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><p class="paragraph">Everything the writer exposes: the <code class="lang-kotlin">RtfWriter</code> / <code class="lang-kotlin">writeRtf</code> styled-model serializer, the <code class="lang-kotlin">MarkdownToRtf</code> / <code class="lang-kotlin">convertMarkdownToRtf</code> converter, and the rich <code class="lang-kotlin">RtfDocument</code> authoring model with <code class="lang-kotlin">RtfDocumentWriter</code>.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="216310487%2FClasslikes%2F-1535997945" anchor-label="MarkdownToRtf" id="216310487%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-markdown-to-rtf/index.html"><span>Markdown</span><wbr><span>To</span><wbr><span><span>Rtf</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="216310487%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-markdown-to-rtf/index.html">MarkdownToRtf</a></div><div class="brief "><p class="paragraph">Converts a small Markdown subset into a <a href="../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.model/-styled-document/index.html">StyledDocument</a>, then to RTF via <a href="-rtf-writer/index.html">RtfWriter</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="615255442%2FClasslikes%2F-1535997945" anchor-label="RtfAlignment" id="615255442%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-alignment/index.html"><span>Rtf</span><wbr><span><span>Alignment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="615255442%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-rtf-alignment/index.html">RtfAlignment</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-rtf-alignment/index.html">RtfAlignment</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Horizontal paragraph alignment. <a href="-rtf-alignment/-left/index.html">Left</a> is the RTF default and emits no control word.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1210781656%2FClasslikes%2F-1535997945" anchor-label="RtfBlock" id="-1210781656%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-block/index.html"><span>Rtf</span><wbr><span><span>Block</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1210781656%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-rtf-block/index.html">RtfBlock</a></div><div class="brief "><p class="paragraph">A block-level element in an <a href="-rtf-document/index.html">RtfDocument</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1384756905%2FClasslikes%2F-1535997945" anchor-label="RtfBookmark" id="-1384756905%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-bookmark/index.html"><span>Rtf</span><wbr><span><span>Bookmark</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1384756905%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-bookmark/index.html">RtfBookmark</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>content<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-rtf-inline/index.html">RtfInline</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="-rtf-inline/index.html">RtfInline</a></div><div class="brief "><p class="paragraph">A named bookmark wrapping <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-bookmark/--root--.html">content</a>, the jump target for a <a href="-rtf-hyperlink-kind/-bookmark/index.html">RtfHyperlinkKind.Bookmark</a> link.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1392136737%2FClasslikes%2F-1535997945" anchor-label="RtfBorder" id="1392136737%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-border/index.html"><span>Rtf</span><wbr><span><span>Border</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1392136737%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-border/index.html">RtfBorder</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>style<span class="token operator">: </span><a href="-rtf-border-style/index.html">RtfBorderStyle</a><span class="token operator"> = </span>RtfBorderStyle.Single<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>widthTwips<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A paragraph border edge.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-132720688%2FClasslikes%2F-1535997945" anchor-label="RtfBorderStyle" id="-132720688%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-border-style/index.html"><span>Rtf</span><wbr><span>Border</span><wbr><span><span>Style</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-132720688%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-rtf-border-style/index.html">RtfBorderStyle</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-rtf-border-style/index.html">RtfBorderStyle</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">A line style for an <a href="-rtf-border/index.html">RtfBorder</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="515654162%2FClasslikes%2F-1535997945" anchor-label="RtfColor" id="515654162%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-color/index.html"><span>Rtf</span><wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="515654162%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-color/index.html">RtfColor</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>red<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>green<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>blue<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">An RGB color usable by <a href="-rtf-span-style/index.html">RtfSpanStyle</a>. Colors are referenced by value; the writer collects every referenced color into the <code class="lang-kotlin">\colortbl</code> (index 0 is reserved for the document default "auto" color) and assigns the <code class="lang-kotlin">\cfN</code> indices.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1549870830%2FClasslikes%2F-1535997945" anchor-label="RtfDocument" id="-1549870830%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-document/index.html"><span>Rtf</span><wbr><span><span>Document</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1549870830%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-document/index.html">RtfDocument</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>blocks<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-rtf-block/index.html">RtfBlock</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>defaultFont<span class="token operator">: </span><a href="-rtf-font/index.html">RtfFont</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>defaultFontSizeHalfPoints<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">24</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>info<span class="token operator">: </span><a href="-rtf-info/index.html">RtfInfo</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>generator<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>codePage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1252</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>defaultLanguage<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1033</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A rich, strongly-typed RTF document model for authoring arbitrarily complex output, the builder-style counterpart to StyledDocument's minimal round-trip model. Construct one directly and serialize it with <a href="-rtf-document-writer/index.html">RtfDocumentWriter</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-582052065%2FClasslikes%2F-1535997945" anchor-label="RtfDocumentWriter" id="-582052065%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-document-writer/index.html"><span>Rtf</span><wbr><span>Document</span><wbr><span><span>Writer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-582052065%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-rtf-document-writer/index.html">RtfDocumentWriter</a></div><div class="brief "><p class="paragraph">Serializes an <a href="-rtf-document/index.html">RtfDocument</a> to a charset-free RTF string.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-948367778%2FClasslikes%2F-1535997945" anchor-label="RtfFont" id="-948367778%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-font/index.html"><span>Rtf</span><wbr><span><span>Font</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-948367778%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-font/index.html">RtfFont</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>family<span class="token operator">: </span><a href="-rtf-font-family/index.html">RtfFontFamily</a><span class="token operator"> = </span>RtfFontFamily.Nil<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>charset<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A font usable by <a href="-rtf-document/index.html">RtfDocument</a>. Fonts are referenced by value from an <a href="-rtf-span-style/index.html">RtfSpanStyle</a>; the writer collects every referenced font (plus the document default) into the <code class="lang-kotlin">\fonttbl</code> and assigns the <code class="lang-kotlin">\fN</code> indices, so callers never juggle indices themselves.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="264695194%2FClasslikes%2F-1535997945" anchor-label="RtfFontFamily" id="264695194%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-font-family/index.html"><span>Rtf</span><wbr><span>Font</span><wbr><span><span>Family</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="264695194%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-rtf-font-family/index.html">RtfFontFamily</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-rtf-font-family/index.html">RtfFontFamily</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">The RTF font-family class emitted in the font table (<code class="lang-kotlin">\froman</code>, <code class="lang-kotlin">\fmodern</code>, …).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1342316655%2FClasslikes%2F-1535997945" anchor-label="RtfHyperlink" id="1342316655%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-hyperlink/index.html"><span>Rtf</span><wbr><span><span>Hyperlink</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1342316655%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-hyperlink/index.html">RtfHyperlink</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>target<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>content<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-rtf-inline/index.html">RtfInline</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kind<span class="token operator">: </span><a href="-rtf-hyperlink-kind/index.html">RtfHyperlinkKind</a><span class="token operator"> = </span>RtfHyperlinkKind.Url</span></span><span class="token punctuation">)</span> : <a href="-rtf-inline/index.html">RtfInline</a></div><div class="brief "><p class="paragraph">A hyperlink field. For <a href="-rtf-hyperlink-kind/-url/index.html">RtfHyperlinkKind.Url</a> the <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-hyperlink/--root--.html">target</a> is an external URL; for <a href="-rtf-hyperlink-kind/-bookmark/index.html">RtfHyperlinkKind.Bookmark</a> it is the name of an <a href="-rtf-bookmark/index.html">RtfBookmark</a> elsewhere in the document. The visible, clickable text is the styled <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-hyperlink/--root--.html">content</a> (set underline/color on its runs to taste).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-933989317%2FClasslikes%2F-1535997945" anchor-label="RtfHyperlinkKind" id="-933989317%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-hyperlink-kind/index.html"><span>Rtf</span><wbr><span>Hyperlink</span><wbr><span><span>Kind</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-933989317%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-rtf-hyperlink-kind/index.html">RtfHyperlinkKind</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-rtf-hyperlink-kind/index.html">RtfHyperlinkKind</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Whether an <a href="-rtf-hyperlink/index.html">RtfHyperlink</a> points at an external URL or an in-document <a href="-rtf-bookmark/index.html">RtfBookmark</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2127597279%2FClasslikes%2F-1535997945" anchor-label="RtfInfo" id="2127597279%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-info/index.html"><span>Rtf</span><wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2127597279%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-info/index.html">RtfInfo</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>title<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>author<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>subject<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>company<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Document metadata emitted in the <code class="lang-kotlin">{\info ...}</code> group. Blank fields are omitted.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1934538668%2FClasslikes%2F-1535997945" anchor-label="RtfInline" id="-1934538668%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-inline/index.html"><span>Rtf</span><wbr><span><span>Inline</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1934538668%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="-rtf-inline/index.html">RtfInline</a></div><div class="brief "><p class="paragraph">A piece of inline content inside an <a href="-rtf-paragraph/index.html">RtfParagraph</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2117982454%2FClasslikes%2F-1535997945" anchor-label="RtfLineBreak" id="-2117982454%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-line-break/index.html"><span>Rtf</span><wbr><span>Line</span><wbr><span><span>Break</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2117982454%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-rtf-line-break/index.html">RtfLineBreak</a> : <a href="-rtf-inline/index.html">RtfInline</a></div><div class="brief "><p class="paragraph">A forced line break within a paragraph (<code class="lang-kotlin">\line</code>).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-835610523%2FClasslikes%2F-1535997945" anchor-label="RtfPageBreak" id="-835610523%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-page-break/index.html"><span>Rtf</span><wbr><span>Page</span><wbr><span><span>Break</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-835610523%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-rtf-page-break/index.html">RtfPageBreak</a> : <a href="-rtf-block/index.html">RtfBlock</a></div><div class="brief "><p class="paragraph">Forces a page break before the following content (<code class="lang-kotlin">\page</code>).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="8775783%2FClasslikes%2F-1535997945" anchor-label="RtfParagraph" id="8775783%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-paragraph/index.html"><span>Rtf</span><wbr><span><span>Paragraph</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="8775783%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-paragraph/index.html">RtfParagraph</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>content<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-rtf-inline/index.html">RtfInline</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>style<span class="token operator">: </span><a href="-rtf-paragraph-style/index.html">RtfParagraphStyle</a><span class="token operator"> = </span>RtfParagraphStyle.Default</span></span><span class="token punctuation">)</span> : <a href="-rtf-block/index.html">RtfBlock</a></div><div class="brief "><p class="paragraph">A paragraph: styled inline <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-paragraph/--root--.html">content</a> plus paragraph-level formatting.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2009873738%2FClasslikes%2F-1535997945" anchor-label="RtfParagraphStyle" id="2009873738%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-paragraph-style/index.html"><span>Rtf</span><wbr><span>Paragraph</span><wbr><span><span>Style</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2009873738%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-paragraph-style/index.html">RtfParagraphStyle</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>alignment<span class="token operator">: </span><a href="-rtf-alignment/index.html">RtfAlignment</a><span class="token operator"> = </span>RtfAlignment.Left<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spaceBeforeTwips<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>spaceAfterTwips<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>firstLineIndentTwips<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>leftIndentTwips<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>keepWithNext<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>bottomBorder<span class="token operator">: </span><a href="-rtf-border/index.html">RtfBorder</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Paragraph-level formatting. All measurements are in twips (twentieths of a point; 1440 = 1 inch); <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-paragraph-style/--root--.html">firstLineIndentTwips</a> may be negative for a hanging indent.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="168950638%2FClasslikes%2F-1535997945" anchor-label="RtfSpanStyle" id="168950638%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-span-style/index.html"><span>Rtf</span><wbr><span>Span</span><wbr><span><span>Style</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="168950638%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-span-style/index.html">RtfSpanStyle</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>bold<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>italic<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>underline<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>strikethrough<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>superscript<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>subscript<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>font<span class="token operator">: </span><a href="-rtf-font/index.html">RtfFont</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>fontSizeHalfPoints<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>color<span class="token operator">: </span><a href="-rtf-color/index.html">RtfColor</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Character-level formatting for an <a href="-rtf-text-run/index.html">RtfTextRun</a>. A <code class="lang-kotlin">null</code> <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-span-style/--root--.html">font</a>, <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-span-style/--root--.html">fontSizeHalfPoints</a> or <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-span-style/--root--.html">color</a> means "inherit the document/paragraph default" — the writer emits the corresponding control word only when the field is set.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1135220512%2FClasslikes%2F-1535997945" anchor-label="RtfTab" id="1135220512%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-tab/index.html"><span>Rtf</span><wbr><span><span>Tab</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1135220512%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-rtf-tab/index.html">RtfTab</a> : <a href="-rtf-inline/index.html">RtfInline</a></div><div class="brief "><p class="paragraph">A tab (<code class="lang-kotlin">\tab</code>).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="637677239%2FClasslikes%2F-1535997945" anchor-label="RtfTextRun" id="637677239%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-text-run/index.html"><span>Rtf</span><wbr><span>Text</span><wbr><span><span>Run</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="637677239%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-rtf-text-run/index.html">RtfTextRun</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>text<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>style<span class="token operator">: </span><a href="-rtf-span-style/index.html">RtfSpanStyle</a><span class="token operator"> = </span>RtfSpanStyle.Default</span></span><span class="token punctuation">)</span> : <a href="-rtf-inline/index.html">RtfInline</a></div><div class="brief "><p class="paragraph">A contiguous run of <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-text-run/--root--.html">text</a> sharing a single <a href="../../rtf-writer/com.darkrockstudios.libs.rtfparserkmp.writer/-rtf-text-run/--root--.html">style</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1520816198%2FClasslikes%2F-1535997945" anchor-label="RtfWriter" id="-1520816198%2FClasslikes%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-writer/index.html"><span>Rtf</span><wbr><span><span>Writer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1520816198%2FClasslikes%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="-rtf-writer/index.html">RtfWriter</a></div><div class="brief "><p class="paragraph">Serializes a <a href="../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.model/-styled-document/index.html">StyledDocument</a> to a charset-free RTF string.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1506810787%2FFunctions%2F-1535997945" anchor-label="convertMarkdownToRtf" id="-1506810787%2FFunctions%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="convert-markdown-to-rtf.html"><span>convert</span><wbr><span>Markdown</span><wbr><span>To</span><wbr><span><span>Rtf</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1506810787%2FFunctions%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="convert-markdown-to-rtf.html"><span class="token function">convertMarkdownToRtf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">markdown<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Convenience entry point: parse <a href="convert-markdown-to-rtf.html">markdown</a> and serialize the resulting document to RTF.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1217803782%2FFunctions%2F-1535997945" anchor-label="writeRtf" id="-1217803782%2FFunctions%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="write-rtf.html"><span>write</span><wbr><span><span>Rtf</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1217803782%2FFunctions%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="write-rtf.html"><span class="token function">writeRtf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">document<span class="token operator">: </span><a href="../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.model/-styled-document/index.html">StyledDocument</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Convenience top-level entry point equivalent to <code class="lang-kotlin">RtfWriter().write(document)</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2042533874%2FFunctions%2F-1535997945" anchor-label="writeRtfDocument" id="-2042533874%2FFunctions%2F-1535997945" data-filterable-set=":rtf-writer/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-writer/commonMain" data-filterable-set=":rtf-writer/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="write-rtf-document.html"><span>write</span><wbr><span>Rtf</span><wbr><span><span>Document</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2042533874%2FFunctions%2F-1535997945"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-writer/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="write-rtf-document.html"><span class="token function">writeRtfDocument</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">document<span class="token operator">: </span><a href="-rtf-document/index.html">RtfDocument</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Convenience top-level entry point equivalent to <code class="lang-kotlin">RtfDocumentWriter().write(document)</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

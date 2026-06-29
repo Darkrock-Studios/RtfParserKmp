@@ -1,0 +1,280 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>RtfToAnnotatedString</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer></script></head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+<a class="library-name--link" href="../../../index.html" tabindex="1">
+                    RtfParserKmp
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector common-like" data-active="" aria-pressed="true" data-filter=":rtf-compose/commonMain">common</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option common-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":rtf-compose/commonMain" data-filter=":rtf-compose/commonMain">
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config="{&quot;defaultSize&quot;: 280, &quot;minSize&quot;: 200, &quot;maxSize&quot;: 400}">
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    RtfParserKmp
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="rtf-compose::com.darkrockstudios.libs.rtfparserkmp.compose/RtfToAnnotatedString///PointingToDeclaration//93447202">
+  <div class="breadcrumbs"><a href="../../index.html">rtf-compose</a><span class="delimiter">/</span><a href="../index.html">com.darkrockstudios.libs.rtfparserkmp.compose</a><span class="delimiter">/</span><span class="current">RtfToAnnotatedString</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Rtf</span><wbr><span>To</span><wbr><span>Annotated</span><wbr><span><span>String</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">RtfToAnnotatedString</a> : <a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.parser/-rtf-listener/index.html">RtfListener</a><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/Darkrock-Studios/RtfParserKmp/blob/main/rtf-compose/src/commonMain/kotlin/com/darkrockstudios/libs/rtfparserkmp/compose/RtfToAnnotatedString.kt#L44">source</a>)</span></span></div><p class="paragraph">Builds a Compose <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/AnnotatedString.html">AnnotatedString</a> from an RTF document. Tracks bold (<a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/b/index.html">Command.b</a>), italic (<a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/i/index.html">Command.i</a>), underline (<a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/ul/index.html">Command.ul</a>) and strikethrough (<a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/strike/index.html">Command.strike</a>) and applies the matching <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/SpanStyle.html">SpanStyle</a> to each body-text run. Body-text filtering matches <a href="../../../rtf-reader/com.darkrockstudios.libs.rtfparserkmp.converter/-rtf-to-markdown/index.html">com.darkrockstudios.libs.rtfparserkmp.converter.RtfToMarkdown</a>: only <a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/rtf/index.html">Command.rtf</a>, <a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/pntext/index.html">Command.pntext</a> and <a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/fldrslt/index.html">Command.fldrslt</a> destinations contribute text.</p><p class="paragraph"><a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/par/index.html">Command.par</a>, <a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/line/index.html">Command.line</a> and <a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/row/index.html">Command.row</a> yield a newline; <a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/tab/index.html">Command.tab</a> yields a tab.</p><p class="paragraph">Character formatting is group-scoped: a snapshot of the formatting state is pushed at each group start and restored at the matching group end, mirroring how RTF braces scope formatting (e.g. <code class="lang-kotlin">{\b bold}</code> resets bold at the <code class="lang-kotlin">}</code>). Explicit <code class="lang-kotlin">\b0</code>/<code class="lang-kotlin">\i0</code>/<code class="lang-kotlin">\ul0</code>/<code class="lang-kotlin">\ulnone</code> toggles still mutate the current state within a group.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1927007897%2FConstructors%2F93447202" anchor-label="RtfToAnnotatedString" id="-1927007897%2FConstructors%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rtf-to-annotated-string.html"><span>Rtf</span><wbr><span>To</span><wbr><span>Annotated</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1927007897%2FConstructors%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1218412485%2FFunctions%2F93447202" anchor-label="build" id="-1218412485%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build.html"><span><span>build</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1218412485%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/AnnotatedString.html">AnnotatedString</a></div><div class="brief "><p class="paragraph">Closes any open span and returns the accumulated <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/text/AnnotatedString.html">AnnotatedString</a>; call after parsing finishes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-12681997%2FFunctions%2F93447202" anchor-label="processBinaryBytes" id="-12681997%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-12681997%2FFunctions%2F93447202"><span>process</span><wbr><span>Binary</span><wbr><span><span>Bytes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-12681997%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-12681997%2FFunctions%2F93447202"><span class="token function">processBinaryBytes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-byte-array/index.html">ByteArray</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1095521811%2FFunctions%2F93447202" anchor-label="processCharacterBytes" id="1095521811%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1095521811%2FFunctions%2F93447202"><span>process</span><wbr><span>Character</span><wbr><span><span>Bytes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1095521811%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#1095521811%2FFunctions%2F93447202"><span class="token function">processCharacterBytes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-byte-array/index.html">ByteArray</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-359549739%2FFunctions%2F93447202" anchor-label="processCommand" id="-359549739%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="process-command.html"><span>process</span><wbr><span><span>Command</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-359549739%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="process-command.html"><span class="token function">processCommand</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="../../../rtf-core/com.darkrockstudios.libs.rtfparserkmp.rtf/-command/index.html">Command</a><span class="token punctuation">, </span></span><span class="parameter ">parameter<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">hasParameter<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">optional<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="406508225%2FFunctions%2F93447202" anchor-label="processDocumentEnd" id="406508225%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#406508225%2FFunctions%2F93447202"><span>process</span><wbr><span>Document</span><wbr><span><span>End</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="406508225%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#406508225%2FFunctions%2F93447202"><span class="token function">processDocumentEnd</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1751389862%2FFunctions%2F93447202" anchor-label="processDocumentStart" id="-1751389862%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1751389862%2FFunctions%2F93447202"><span>process</span><wbr><span>Document</span><wbr><span><span>Start</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1751389862%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="index.html#-1751389862%2FFunctions%2F93447202"><span class="token function">processDocumentStart</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1656165154%2FFunctions%2F93447202" anchor-label="processGroupEnd" id="-1656165154%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="process-group-end.html"><span>process</span><wbr><span>Group</span><wbr><span><span>End</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1656165154%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="process-group-end.html"><span class="token function">processGroupEnd</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="294383671%2FFunctions%2F93447202" anchor-label="processGroupStart" id="294383671%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="process-group-start.html"><span>process</span><wbr><span>Group</span><wbr><span><span>Start</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="294383671%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="process-group-start.html"><span class="token function">processGroupStart</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1646459877%2FFunctions%2F93447202" anchor-label="processString" id="-1646459877%2FFunctions%2F93447202" data-filterable-set=":rtf-compose/commonMain"></a>
+          <div class="table-row table-row_content" data-filterable-current=":rtf-compose/commonMain" data-filterable-set=":rtf-compose/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="process-string.html"><span>process</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1646459877%2FFunctions%2F93447202"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rtf-compose/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="process-string.html"><span class="token function">processString</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">string<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
