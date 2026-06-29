@@ -2,6 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.darkrockstudios/rtf-reader?label=Maven%20Central)](https://central.sonatype.com/artifact/com.darkrockstudios/rtf-reader)
 [![CI](https://github.com/Darkrock-Studios/RtfParserKmp/actions/workflows/ci.yml/badge.svg)](https://github.com/Darkrock-Studios/RtfParserKmp/actions/workflows/ci.yml)
+[![API Docs](https://img.shields.io/badge/docs-API_reference-blue.svg)](https://darkrock-studios.github.io/RtfParserKmp/)
 
 An idiomatic **Kotlin Multiplatform** RTF reader and writer.
 
@@ -47,6 +48,11 @@ macOS (x64/arm64) · tvOS · watchOS · Linux (x64/arm64) · Windows (mingwX64).
 
 Core parsing — including `\uN` Unicode, all single-byte codepages (Windows-125x, CP437/850/874,
 Mac Roman and friends), and UTF-8 — runs identically on **every** target with zero platform code.
+
+## Documentation
+
+Full API reference and per-module recipe guides:
+[**darkrock-studios.github.io/RtfParserKmp**](https://darkrock-studios.github.io/RtfParserKmp/).
 
 ## Usage
 

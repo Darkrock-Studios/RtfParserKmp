@@ -11,6 +11,9 @@ local.properties
 # One-off multi-agent orchestration scripts (session tooling, not build inputs).
 /tools/*.workflow.mjs
 
+# Generated Dokka API docs; published to the gh-pages branch by deploy-docs.yml, not committed to main.
+/docs/api/
+
 # IDE
 .idea/
 *.iml

@@ -30,6 +30,7 @@ import com.darkrockstudios.libs.rtfparserkmp.model.TextRun
  * `\par` follows the last paragraph.
  */
 class RtfWriter {
+    /** Serializes [document] to a complete RTF string. */
     fun write(document: StyledDocument): String {
         val sb = StringBuilder()
         sb.append("{\\rtf1\\ansi\\deff0{\\fonttbl{\\f0 Times New Roman;}}")

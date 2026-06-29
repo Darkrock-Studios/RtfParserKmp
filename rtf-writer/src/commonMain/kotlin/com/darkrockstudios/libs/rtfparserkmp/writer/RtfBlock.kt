@@ -67,6 +67,7 @@ data class RtfParagraphStyle(
     val bottomBorder: RtfBorder? = null,
 ) {
     companion object {
+        /** Left-aligned with no indents, spacing, or border — the implicit paragraph style. */
         val Default = RtfParagraphStyle()
     }
 }

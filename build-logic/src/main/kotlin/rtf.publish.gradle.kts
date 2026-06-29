@@ -24,9 +24,9 @@ mavenPublishing {
 
         developers {
             developer {
-                id.set("wavesonics")
+                id.set("Darkrock-Studios")
                 name.set("Adam Brown")
-                url.set("https://github.com/Wavesonics")
+                url.set("https://github.com/Darkrock-Studios")
             }
         }
 

@@ -25,6 +25,7 @@ package com.darkrockstudios.libs.rtfparserkmp.writer
  * own `{...}` group so character formatting cannot leak between runs.
  */
 class RtfDocumentWriter {
+    /** Serializes [document] to a complete, charset-free RTF string. */
     fun write(document: RtfDocument): String {
         val (fonts, colors) = collectResources(document)
         val fontIndex = fonts.withIndex().associate { (i, font) -> font to i }

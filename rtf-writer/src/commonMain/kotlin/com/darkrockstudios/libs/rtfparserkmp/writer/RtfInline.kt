@@ -38,6 +38,7 @@ data class RtfSpanStyle(
     val color: RtfColor? = null,
 ) {
     companion object {
+        /** No character formatting — plain text in the document's default font. */
         val Default = RtfSpanStyle()
     }
 }

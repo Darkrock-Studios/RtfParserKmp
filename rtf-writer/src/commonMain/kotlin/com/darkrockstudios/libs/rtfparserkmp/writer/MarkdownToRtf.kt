@@ -34,6 +34,7 @@ import com.darkrockstudios.libs.rtfparserkmp.model.TextRun
  * An unmatched emphasis marker is emitted as a literal character rather than opening a span.
  */
 class MarkdownToRtf {
+    /** Parses [markdown] into a [StyledDocument], one [Paragraph] per blank-line-separated block. */
     fun convert(markdown: String): StyledDocument {
         val blocks = splitParagraphs(markdown)
         val paragraphs = blocks.map { Paragraph(parseInline(it)) }

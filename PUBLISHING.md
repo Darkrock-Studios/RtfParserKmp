@@ -52,3 +52,21 @@ trigger with an optional `version` input is also available for manual runs.
 ```bash
 ./gradlew publishToMavenLocal      # SNAPSHOT, unsigned — for testing consumers
 ```
+
+## API documentation
+
+The aggregated Dokka API docs (all six modules, with the per-module `Module.md` recipe pages) are
+served by GitHub Pages from the **`gh-pages`** branch root:
+
+- Reference: https://darkrock-studios.github.io/RtfParserKmp/
+
+Pushing a `vX.Y.Z` tag triggers `.github/workflows/deploy-docs.yml`, which builds the docs and force-
+replaces the `gh-pages` branch contents (the branch is created automatically on the first run). It can
+also be run on demand from the Actions tab (**Deploy Docs → Run workflow**). To generate them locally:
+
+```bash
+./gradlew updateDocs       # generates docs/api/ (git-ignored; published only to gh-pages)
+```
+
+> **Repo setting:** after the first run, set **Settings → Pages → Source** to *Deploy from a branch*,
+> branch **`gh-pages`** / **`/ (root)`**.

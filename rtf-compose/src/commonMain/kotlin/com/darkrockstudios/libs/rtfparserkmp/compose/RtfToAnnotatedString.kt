@@ -55,6 +55,7 @@ class RtfToAnnotatedString : RtfListener {
     /** The span style currently pushed onto the builder, if any. */
     private var openStyle: SpanStyle? = null
 
+    /** Closes any open span and returns the accumulated [AnnotatedString]; call after parsing finishes. */
     fun build(): AnnotatedString {
         closeStyle()
         return builder.toAnnotatedString()
