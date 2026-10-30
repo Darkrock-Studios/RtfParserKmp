@@ -26,7 +26,10 @@ object HexUtils {
             ?: throw IllegalArgumentException("Invalid hex digit $ch")
 
     /** Convert a string of hex digits into an array of bytes. */
-    fun parseHexString(hex: String): ByteArray {
+    fun parseHexString(hex: String): ByteArray = parseHexString(hex as CharSequence)
+
+    /** Convert a sequence of hex digits into an array of bytes. */
+    fun parseHexString(hex: CharSequence): ByteArray {
         require(hex.length % 2 == 0) { "Invalid hex string" }
         return ByteArray(hex.length / 2) { byteIndex ->
             val stringIndex = byteIndex * 2

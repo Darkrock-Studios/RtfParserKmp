@@ -16,6 +16,8 @@
 
 package com.darkrockstudios.libs.rtfparserkmp.parser
 
+import com.darkrockstudios.libs.rtfparserkmp.model.PictureFormat
+
 /**
  * A single event emitted while parsing an RTF document — the idiomatic sealed-type replacement for
  * the upstream per-event classes. Consumers can drive a `when` over these, or implement [RtfListener].
@@ -52,5 +54,65 @@ sealed interface RtfEvent {
         override fun hashCode(): Int = bytes.contentHashCode()
 
         override fun toString(): String = "BinaryBytes(size=${bytes.size})"
+    }
+
+    /**
+     * A decoded `\pict` group. It follows the `pict` [Command] that opened the group and precedes the
+     * group's [GroupEnd]; the group's hex payload and nested groups are not emitted as events.
+     *
+     * [width] and [height] are the raw `\picwN` / `\pichN` values, whose units vary by producer: the
+     * spec says pixels for bitmaps, but Word writes hundredths of a millimetre even for PNG and JPEG.
+     * Use [goalWidthTwips] / [goalHeightTwips], scaled by [scaleXPercent] / [scaleYPercent], for the
+     * display size.
+     *
+     * @param bytes the image data, from the group's hex text or its `\binN` blob.
+     * @param format the declared encoding, or `null` when the group names none the parser knows.
+     * @param width the raw `\picwN` source width.
+     * @param height the raw `\pichN` source height.
+     * @param goalWidthTwips the `\picwgoalN` rendered width in twips, before scaling.
+     * @param goalHeightTwips the `\pichgoalN` rendered height in twips, before scaling.
+     * @param scaleXPercent the `\picscalexN` horizontal scale. Word keeps the goals at the picture's
+     *   original size and records a user resize here.
+     * @param scaleYPercent the `\picscaleyN` vertical scale, as for [scaleXPercent].
+     */
+    class Picture(
+        val bytes: ByteArray,
+        val format: PictureFormat?,
+        val width: Int?,
+        val height: Int?,
+        val goalWidthTwips: Int?,
+        val goalHeightTwips: Int?,
+        val scaleXPercent: Int = 100,
+        val scaleYPercent: Int = 100,
+    ) : RtfEvent {
+        override fun equals(other: Any?): Boolean =
+            this === other || (
+                other is Picture &&
+                    bytes.contentEquals(other.bytes) &&
+                    format == other.format &&
+                    width == other.width &&
+                    height == other.height &&
+                    goalWidthTwips == other.goalWidthTwips &&
+                    goalHeightTwips == other.goalHeightTwips &&
+                    scaleXPercent == other.scaleXPercent &&
+                    scaleYPercent == other.scaleYPercent
+                )
+
+        override fun hashCode(): Int {
+            var result = bytes.contentHashCode()
+            result = 31 * result + format.hashCode()
+            result = 31 * result + (width ?: 0)
+            result = 31 * result + (height ?: 0)
+            result = 31 * result + (goalWidthTwips ?: 0)
+            result = 31 * result + (goalHeightTwips ?: 0)
+            result = 31 * result + scaleXPercent
+            result = 31 * result + scaleYPercent
+            return result
+        }
+
+        override fun toString(): String =
+            "Picture(size=${bytes.size}, format=$format, width=$width, height=$height, " +
+                "goalWidthTwips=$goalWidthTwips, goalHeightTwips=$goalHeightTwips, " +
+                "scaleXPercent=$scaleXPercent, scaleYPercent=$scaleYPercent)"
     }
 }

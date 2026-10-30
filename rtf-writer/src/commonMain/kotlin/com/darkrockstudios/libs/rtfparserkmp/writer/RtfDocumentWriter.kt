@@ -100,11 +100,26 @@ class RtfDocumentWriter {
         when (block) {
             RtfPageBreak -> sb.append("\\page\n")
             is RtfParagraph -> writeParagraph(sb, block, ctx)
+            is RtfPicture -> writePicture(sb, block)
         }
     }
 
+    private fun writePicture(sb: StringBuilder, picture: RtfPicture) {
+        writeParagraphPrefix(sb, picture.style)
+        picture.data.appendTo(sb)
+        sb.append("\\par\n")
+    }
+
     private fun writeParagraph(sb: StringBuilder, paragraph: RtfParagraph, ctx: WriteContext) {
-        val style = paragraph.style
+        writeParagraphPrefix(sb, paragraph.style)
+        for (inline in paragraph.content) {
+            writeInline(sb, inline, ctx)
+        }
+        sb.append("\\par\n")
+    }
+
+    /** Writes `\pard`, the [style]'s control words, and the space that ends them. */
+    private fun writeParagraphPrefix(sb: StringBuilder, style: RtfParagraphStyle) {
         sb.append("\\pard")
         style.alignment.keyword?.let(sb::append)
         if (style.spaceBeforeTwips != 0) sb.append("\\sb").append(style.spaceBeforeTwips)
@@ -116,11 +131,6 @@ class RtfDocumentWriter {
             sb.append("\\brdrb").append(it.style.keyword).append("\\brdrw").append(it.widthTwips)
         }
         sb.append(' ')
-
-        for (inline in paragraph.content) {
-            writeInline(sb, inline, ctx)
-        }
-        sb.append("\\par\n")
     }
 
     private fun writeInline(sb: StringBuilder, inline: RtfInline, ctx: WriteContext) {
@@ -130,6 +140,7 @@ class RtfDocumentWriter {
             RtfTab -> sb.append("\\tab ")
             is RtfHyperlink -> writeHyperlink(sb, inline, ctx)
             is RtfBookmark -> writeBookmark(sb, inline, ctx)
+            is RtfInlinePicture -> inline.data.appendTo(sb)
         }
     }
 
@@ -190,7 +201,10 @@ class RtfDocumentWriter {
 
     private fun forEachRunInBlocks(blocks: List<RtfBlock>, action: (RtfTextRun) -> Unit) {
         for (block in blocks) {
-            if (block is RtfParagraph) forEachRunInInlines(block.content, action)
+            when (block) {
+                is RtfParagraph -> forEachRunInInlines(block.content, action)
+                is RtfPicture, RtfPageBreak -> {}
+            }
         }
     }
 
@@ -200,7 +214,7 @@ class RtfDocumentWriter {
                 is RtfTextRun -> action(inline)
                 is RtfHyperlink -> forEachRunInInlines(inline.content, action)
                 is RtfBookmark -> forEachRunInInlines(inline.content, action)
-                RtfLineBreak, RtfTab -> {}
+                is RtfInlinePicture, RtfLineBreak, RtfTab -> {}
             }
         }
     }

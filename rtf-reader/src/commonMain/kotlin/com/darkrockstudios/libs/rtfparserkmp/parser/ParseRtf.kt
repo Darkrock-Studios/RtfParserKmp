@@ -55,6 +55,10 @@ private class CollectingRtfListener(private val events: MutableList<RtfEvent>) :
         events.add(RtfEvent.BinaryBytes(data))
     }
 
+    override fun processPicture(picture: RtfEvent.Picture) {
+        events.add(picture)
+    }
+
     override fun processString(string: String) {
         events.add(RtfEvent.Text(string))
     }

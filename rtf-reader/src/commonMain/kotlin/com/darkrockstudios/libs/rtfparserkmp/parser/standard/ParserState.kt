@@ -26,6 +26,12 @@ internal class ParserState {
     var currentFontEncoding: String? = null
     var unicodeAlternateSkipCount: Int = 1
 
+    /**
+     * Inside a `\nonshppict` or `\shprslt` group, whose pictures are fallback copies of a picture
+     * written before them (in `\shppict` or the shape's `\shpinst`).
+     */
+    var inPictureFallback: Boolean = false
+
     constructor()
 
     constructor(state: ParserState) {
@@ -34,5 +40,6 @@ internal class ParserState {
         currentEncoding = state.currentEncoding
         currentFontEncoding = state.currentFontEncoding
         unicodeAlternateSkipCount = state.unicodeAlternateSkipCount
+        inPictureFallback = state.inPictureFallback
     }
 }

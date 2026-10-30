@@ -74,3 +74,29 @@ data class RtfBookmark(
     val name: String,
     val content: List<RtfInline>,
 ) : RtfInline
+
+/**
+ * A picture flowing inside a paragraph, like a large character. See [RtfPicture] for one on a line
+ * of its own; the parameters are the same apart from style. The 96 dpi default size exceeds a
+ * 6.5 inch text width for images wider than 624 px, so pass a goal for large images.
+ *
+ * @throws IllegalArgumentException if [bytes] is empty, a size is not positive, or a size or derived
+ *   goal does not fit in an Int number of twips.
+ */
+class RtfInlinePicture(
+    val bytes: ByteArray,
+    val format: RtfPictureFormat,
+    val widthPx: Int,
+    val heightPx: Int,
+    val goalWidthTwips: Int? = null,
+    val goalHeightTwips: Int? = null,
+) : RtfInline {
+    internal val data = PictureData(bytes, format, widthPx, heightPx, goalWidthTwips, goalHeightTwips)
+
+    override fun equals(other: Any?): Boolean =
+        this === other || (other is RtfInlinePicture && data == other.data)
+
+    override fun hashCode(): Int = data.hashCode()
+
+    override fun toString(): String = "RtfInlinePicture($data)"
+}

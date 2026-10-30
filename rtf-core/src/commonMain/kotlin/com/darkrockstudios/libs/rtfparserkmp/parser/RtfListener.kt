@@ -44,6 +44,12 @@ interface RtfListener {
     /** Raw binary bytes (from a `\binN` blob). */
     fun processBinaryBytes(data: ByteArray) {}
 
+    /**
+     * A decoded `\pict` group, delivered between the `pict` [processCommand] and the group's
+     * [processGroupEnd]. The group's hex payload never reaches [processString].
+     */
+    fun processPicture(picture: RtfEvent.Picture) {}
+
     /** Decoded string data; no further processing is required. */
     fun processString(string: String) {}
 

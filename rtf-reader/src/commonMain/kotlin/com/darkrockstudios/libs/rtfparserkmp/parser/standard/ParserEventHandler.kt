@@ -16,9 +16,11 @@
 
 package com.darkrockstudios.libs.rtfparserkmp.parser.standard
 
+import com.darkrockstudios.libs.rtfparserkmp.model.PictureFormat
 import com.darkrockstudios.libs.rtfparserkmp.parser.RtfEvent
 import com.darkrockstudios.libs.rtfparserkmp.parser.RtfListener
 import com.darkrockstudios.libs.rtfparserkmp.rtf.Command
+import com.darkrockstudios.libs.rtfparserkmp.utils.HexUtils
 
 /**
  * Pass this event to the listener.
@@ -31,6 +33,7 @@ internal fun RtfEvent.fireTo(listener: RtfListener) {
         RtfEvent.GroupEnd -> listener.processGroupEnd()
         is RtfEvent.Text -> listener.processString(text)
         is RtfEvent.BinaryBytes -> listener.processBinaryBytes(bytes)
+        is RtfEvent.Picture -> listener.processPicture(this)
         is RtfEvent.Command -> listener.processCommand(command, parameter, hasParameter, optional)
     }
 }
@@ -258,4 +261,123 @@ internal class UprHandler(private val handler: ParserEventHandler) : ParserEvent
 
         complete = true
     }
+}
+
+/**
+ * Consumes the rest of the group that a `\pict` command opened (the group start was already passed
+ * on before the command) and forwards it to [handler] as three events: the [pictCommand] itself, so
+ * destination-tracking listeners still see the `pict` destination, one [RtfEvent.Picture], and the
+ * group end. Everything else in the group, including nested groups such as `{\*\blipuid ...}`, is
+ * dropped.
+ *
+ * The picture bytes come from the group's `\binN` blob when it has one, otherwise from its hex text
+ * with whitespace removed. Hex containing a non-hex character or an odd number of digits, or an empty
+ * payload, yields no [RtfEvent.Picture] rather than failing the parse; only ASCII hex digits count.
+ * [emitPicture] false also suppresses the picture, for fallback copies such as those inside
+ * `\nonshppict` or `\shprslt`.
+ */
+internal class PictureHandler(
+    private val handler: ParserEventHandler,
+    private val emitPicture: Boolean,
+    private val pictCommand: RtfEvent.Command,
+) : ParserEventHandler {
+    private var groupCount = 1
+    private var complete = false
+    private val events = ArrayList<RtfEvent>()
+
+    override fun handleEvent(event: RtfEvent) {
+        when (event) {
+            RtfEvent.GroupStart -> ++groupCount
+            RtfEvent.GroupEnd -> --groupCount
+            else -> {
+            }
+        }
+
+        if (groupCount == 0) {
+            handler.handleEvent(pictCommand)
+            if (emitPicture) {
+                buildPicture()?.let(handler::handleEvent)
+            }
+            handler.handleEvent(event)
+            events.clear()
+            complete = true
+        } else {
+            events.add(event)
+        }
+    }
+
+    override val lastEvent: RtfEvent?
+        get() = events.lastOrNull()
+
+    override fun removeLastEvent() {
+        events.removeAt(events.size - 1)
+    }
+
+    override val isComplete: Boolean
+        get() = complete
+
+    private fun buildPicture(): RtfEvent.Picture? {
+        var format: PictureFormat? = null
+        var width: Int? = null
+        var height: Int? = null
+        var goalWidthTwips: Int? = null
+        var goalHeightTwips: Int? = null
+        var scaleXPercent = 100
+        var scaleYPercent = 100
+        val hex = StringBuilder()
+        var binary: ByteArray? = null
+        var depth = 0
+
+        for (event in events) {
+            when (event) {
+                RtfEvent.GroupStart -> ++depth
+                RtfEvent.GroupEnd -> --depth
+                is RtfEvent.Text -> if (depth == 0) event.text.filterNotTo(hex) { it.isWhitespace() }
+                is RtfEvent.BinaryBytes -> if (depth == 0) binary = binary?.plus(event.bytes) ?: event.bytes
+                is RtfEvent.Command -> if (depth == 0) {
+                    val value = if (event.hasParameter) event.parameter else null
+                    when (event.command) {
+                        Command.pngblip -> format = PictureFormat.Png
+                        Command.jpegblip -> format = PictureFormat.Jpeg
+                        Command.emfblip -> format = PictureFormat.Emf
+                        Command.wmetafile -> format = PictureFormat.Wmf
+                        Command.pmmetafile -> format = PictureFormat.Os2Metafile
+                        Command.macpict -> format = PictureFormat.MacPict
+                        Command.dibitmap -> format = PictureFormat.DeviceIndependentBitmap
+                        Command.wbitmap -> format = PictureFormat.DeviceDependentBitmap
+                        Command.picw -> width = value
+                        Command.pich -> height = value
+                        Command.picwgoal -> goalWidthTwips = value
+                        Command.pichgoal -> goalHeightTwips = value
+                        Command.picscalex -> value?.let { scaleXPercent = it }
+                        Command.picscaley -> value?.let { scaleYPercent = it }
+                        else -> {
+                        }
+                    }
+                }
+                else -> {
+                }
+            }
+        }
+
+        val bytes = binary ?: decodeHex(hex) ?: return null
+        if (bytes.isEmpty()) return null
+        return RtfEvent.Picture(
+            bytes,
+            format,
+            width,
+            height,
+            goalWidthTwips,
+            goalHeightTwips,
+            scaleXPercent,
+            scaleYPercent,
+        )
+    }
+
+    private fun decodeHex(hex: CharSequence): ByteArray? {
+        if (hex.length % 2 != 0 || !hex.all(::isAsciiHexDigit)) return null
+        return HexUtils.parseHexString(hex)
+    }
+
+    private fun isAsciiHexDigit(c: Char): Boolean = c in '0'..'9' || c in 'a'..'f' || c in 'A'..'F'
 }
