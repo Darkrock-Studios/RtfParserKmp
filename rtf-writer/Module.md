@@ -1,8 +1,9 @@
 # Module rtf-writer
 
 Emits RTF — from the simple styled-text model, from Markdown, or from a rich authoring model with
-fonts, colors, headings, page breaks, hyperlinks and bookmarks. All output is 7-bit ASCII (non-ASCII
-escaped as `\uN`), so the writer has no charset dependency and round-trips cleanly with `rtf-reader`.
+fonts, colors, headings, page breaks, hyperlinks, bookmarks and pictures. All output is 7-bit ASCII
+(non-ASCII escaped as `\uN`), so the writer has no charset dependency and round-trips cleanly with
+`rtf-reader`.
 
 ## From Markdown
 
@@ -46,6 +47,7 @@ RtfDocument
 ├── codePage / defaultLanguage: Int      // \ansicpgN / \deflangN (cosmetic; output is ASCII)
 └── blocks: List<RtfBlock>
     ├── RtfPageBreak                      // \page
+    ├── RtfPicture(bytes, format, size, style)   // a PNG/JPEG {\pict ...} in its own paragraph
     └── RtfParagraph
         ├── style: RtfParagraphStyle      // alignment, spacing, indents, keepWithNext, bottomBorder
         └── content: List<RtfInline>
@@ -53,7 +55,8 @@ RtfDocument
             ├── RtfLineBreak                     // \line
             ├── RtfTab                           // \tab
             ├── RtfHyperlink(target, content, kind)   // external URL or in-document bookmark
-            └── RtfBookmark(name, content)            // a jump target wrapping its content
+            ├── RtfBookmark(name, content)            // a jump target wrapping its content
+            └── RtfInlinePicture(bytes, format, size) // a picture flowing with the text
 ```
 
 #### Fonts and colors are referenced by value
@@ -188,6 +191,24 @@ RtfParagraph(listOf(
 RtfParagraph(listOf(RtfTextRun("line one"), RtfLineBreak, RtfTextRun("line two")))
 ```
 
+**Pictures**: `RtfPicture` puts a PNG or JPEG in a paragraph of its own (`RtfInlinePicture` flows
+inside a paragraph). Only PNG and JPEG are supported. The writer does not decode the image, so pass
+its pixel size. Give one goal and the other follows the aspect ratio; give none and the rendered size
+is the pixel size at 96 dpi (15 twips per pixel), which is wider than a 6.5 inch text width for images
+over 624 px. A centered picture at 70% of a 6.5 inch text width:
+
+```kotlin
+val goalWidth = 6552                                // 6.5 * 1440 * 0.7 twips
+RtfPicture(
+    bytes = pngBytes,
+    format = RtfPictureFormat.Png,
+    widthPx = 1200,
+    heightPx = 800,
+    goalWidthTwips = goalWidth,                     // height follows: 4368 twips
+    style = RtfParagraphStyle(alignment = RtfAlignment.Center),
+)
+```
+
 ### API reference
 
 All types live in `com.darkrockstudios.libs.rtfparserkmp.writer`.
@@ -199,11 +220,12 @@ All types live in `com.darkrockstudios.libs.rtfparserkmp.writer`.
 | `RtfInfo` | `\info` metadata (title, author, subject, company) |
 | `RtfFont` / `RtfFontFamily` | a font-table entry and its family class (`\froman`, `\fmodern`, …) |
 | `RtfColor` (`.fromRgb`) | a color-table entry |
-| `RtfBlock` → `RtfParagraph`, `RtfPageBreak` | block-level content |
+| `RtfBlock` → `RtfParagraph`, `RtfPageBreak`, `RtfPicture` | block-level content |
 | `RtfParagraphStyle` / `RtfAlignment` / `RtfBorder` / `RtfBorderStyle` | paragraph layout |
-| `RtfInline` → `RtfTextRun`, `RtfLineBreak`, `RtfTab`, `RtfHyperlink`, `RtfBookmark` | inline content |
+| `RtfInline` → `RtfTextRun`, `RtfLineBreak`, `RtfTab`, `RtfHyperlink`, `RtfBookmark`, `RtfInlinePicture` | inline content |
 | `RtfSpanStyle` | character formatting for a run (style, font, size, color) |
 | `RtfHyperlinkKind` | `Url` (external) or `Bookmark` (in-document jump) |
+| `RtfPicture` / `RtfInlinePicture` / `RtfPictureFormat` | an embedded PNG or JPEG with its pixel size and optional rendered size in twips |
 
 # Package com.darkrockstudios.libs.rtfparserkmp.writer
 

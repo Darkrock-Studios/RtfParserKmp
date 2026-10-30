@@ -148,6 +148,13 @@ class StandardRtfParser : RtfParser, RtfListener {
 
                 Command.upr -> processUpr(RtfEvent.Command(command, parameter, hasParameter, optionalFlag))
 
+                Command.pict -> processPict(RtfEvent.Command(command, parameter, hasParameter, optionalFlag))
+
+                Command.nonshppict, Command.shprslt -> {
+                    state.inPictureFallback = true
+                    handleCommand(command, parameter, hasParameter, optionalFlag)
+                }
+
                 Command.emdash -> processCharacter('—')
 
                 Command.endash -> processCharacter('–')
@@ -279,6 +286,17 @@ class StandardRtfParser : RtfParser, RtfListener {
     }
 
     /**
+     * Process a pict command: consume the rest of its group and emit it as a single
+     * [RtfEvent.Picture]. Pictures inside `\nonshppict` or `\shprslt` are dropped because Word writes
+     * them as fallback copies of a `\shppict` or shape picture before them.
+     */
+    private fun processPict(command: RtfEvent.Command) {
+        val pictureHandler = PictureHandler(handler, emitPicture = !state.inPictureFallback, command)
+        handlerStack.addLast(handler)
+        handler = pictureHandler
+    }
+
+    /**
      * Process a single character.
      */
     private fun processCharacter(c: Char) {
@@ -298,7 +316,8 @@ class StandardRtfParser : RtfParser, RtfListener {
      */
     private fun handleEvent(event: RtfEvent) {
         handler.handleEvent(event)
-        if (handler.isComplete) {
+        // A completing handler forwards to its parent directly, which can complete the parent too.
+        while (handler.isComplete) {
             handler = handlerStack.removeLast()
         }
     }

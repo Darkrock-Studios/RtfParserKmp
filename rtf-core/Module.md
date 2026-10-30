@@ -11,9 +11,10 @@ front-end or listener.
 ## The event model
 
 Parsing an RTF stream produces a flat sequence of `RtfEvent`s — `DocumentStart`/`DocumentEnd`,
-`GroupStart`/`GroupEnd`, `Text`, `Command`, and `BinaryBytes`. Consume it either by implementing
-`RtfListener` (every method has a no-op default, so override only what you care about) or by walking
-the sealed `RtfEvent` list that `rtf-reader`'s `parseRtf` returns.
+`GroupStart`/`GroupEnd`, `Text`, `Command`, `BinaryBytes`, and `Picture` (a decoded `\pict` group).
+Consume it either by implementing `RtfListener` (every method has a no-op default, so override only
+what you care about) or by walking the sealed `RtfEvent` list that `rtf-reader`'s `parseRtf`
+returns.
 
 ```kotlin
 class TitleGrabber : RtfListener {

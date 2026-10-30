@@ -30,6 +30,12 @@ supply. For full control over the input, instantiate `StandardRtfParser` and cal
 `RtfSource` — a faithful, SAX-style port of RTFParserKit's Standard parser. Malformed input throws
 `RtfParseException`.
 
+Pictures: each `\pict` group surfaces as one `RtfEvent.Picture` (`RtfListener.processPicture`) carrying
+the decoded image bytes, format, sizes and scale, placed between the `pict` command and the group's
+end, in whatever destination contains the group (for Word's body pictures that is `shppict`, not
+`rtf`). Its hex is never emitted as text, and the fallback copies Word writes inside `\nonshppict` and
+`\shprslt` are suppressed.
+
 # Package com.darkrockstudios.libs.rtfparserkmp.converter
 
 High-level conversions: `RtfTextExtractor` / `extractPlainText` and `RtfToMarkdown` / `convertToMarkdown`.
