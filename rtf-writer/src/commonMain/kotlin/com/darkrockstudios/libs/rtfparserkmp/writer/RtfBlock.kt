@@ -56,6 +56,7 @@ data class RtfBorder(
  * @param leftIndentTwips `\liN` left indent for the whole paragraph.
  * @param keepWithNext `\keepn` — keep this paragraph on the same page as the next.
  * @param bottomBorder a rule drawn below the paragraph; an empty paragraph with one renders a `\hr`.
+ * @param pageBreakBefore `\pagebb`: start this paragraph on a new page.
  */
 data class RtfParagraphStyle(
     val alignment: RtfAlignment = RtfAlignment.Left,
@@ -65,6 +66,7 @@ data class RtfParagraphStyle(
     val leftIndentTwips: Int = 0,
     val keepWithNext: Boolean = false,
     val bottomBorder: RtfBorder? = null,
+    val pageBreakBefore: Boolean = false,
 ) {
     companion object {
         /** Left-aligned with no indents, spacing, or border — the implicit paragraph style. */
@@ -78,7 +80,13 @@ data class RtfParagraph(
     val style: RtfParagraphStyle = RtfParagraphStyle.Default,
 ) : RtfBlock
 
-/** Forces a page break before the following content (`\page`). */
+/**
+ * Forces a page break before the following content (`\page`).
+ *
+ * For a break that belongs to a paragraph, use [RtfParagraphStyle.pageBreakBefore] instead: a bare
+ * `\page` lands at the start of the next paragraph, and Word places that line, with its space-before, on
+ * the current page.
+ */
 data object RtfPageBreak : RtfBlock
 
 /** An image encoding the writer can embed in a `\pict` group. */

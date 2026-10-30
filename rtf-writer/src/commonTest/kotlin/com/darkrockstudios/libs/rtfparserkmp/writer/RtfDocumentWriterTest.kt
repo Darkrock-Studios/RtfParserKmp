@@ -17,8 +17,12 @@
 package com.darkrockstudios.libs.rtfparserkmp.writer
 
 import com.darkrockstudios.libs.rtfparserkmp.converter.extractPlainText
+import com.darkrockstudios.libs.rtfparserkmp.parser.RtfEvent
+import com.darkrockstudios.libs.rtfparserkmp.parser.parseRtf
+import com.darkrockstudios.libs.rtfparserkmp.rtf.Command
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 private val TIMES = RtfFont("Times New Roman", RtfFontFamily.Roman)
@@ -77,12 +81,13 @@ class RtfDocumentWriterTest {
                         firstLineIndentTwips = 360,
                         leftIndentTwips = 720,
                         keepWithNext = true,
+                        pageBreakBefore = true,
                     ),
                 ),
             ),
             defaultFont = TIMES,
         )
-        val expected = "$TIMES_HEADER\\fs24\n\\pard\\qc\\sb360\\sa240\\li720\\fi360\\keepn {x}\\par\n}"
+        val expected = "$TIMES_HEADER\\fs24\n\\pard\\qc\\sb360\\sa240\\li720\\fi360\\keepn\\pagebb {x}\\par\n}"
         assertEquals(expected, RtfDocumentWriter().write(doc))
     }
 
@@ -112,6 +117,42 @@ class RtfDocumentWriterTest {
         )
         val expected = "$TIMES_HEADER\\fs24\n\\page\n\\pard {After}\\par\n}"
         assertEquals(expected, RtfDocumentWriter().write(doc))
+    }
+
+    @Test
+    fun pageBreakBeforeParagraph() {
+        val doc = RtfDocument(
+            blocks = listOf(RtfParagraph(listOf(RtfTextRun("x")), RtfParagraphStyle(pageBreakBefore = true))),
+            defaultFont = TIMES,
+        )
+        assertEquals("$TIMES_HEADER\\fs24\n\\pard\\pagebb {x}\\par\n}", RtfDocumentWriter().write(doc))
+    }
+
+    @Test
+    fun defaultStyleWritesNoPageBreakBefore() {
+        val doc = RtfDocument(blocks = listOf(RtfParagraph(listOf(RtfTextRun("x")))), defaultFont = TIMES)
+        assertFalse("\\pagebb" in RtfDocumentWriter().write(doc))
+    }
+
+    @Test
+    fun pageBreakBeforeRoundTripsThroughReader() {
+        val doc = RtfDocument(
+            blocks = listOf(
+                RtfParagraph(listOf(RtfTextRun("Cover"))),
+                RtfParagraph(listOf(RtfTextRun("Title")), RtfParagraphStyle(pageBreakBefore = true)),
+            ),
+            defaultFont = TIMES,
+        )
+        val bytes = RtfDocumentWriter().write(doc).encodeToByteArray()
+        val events = parseRtf(bytes)
+        val pagebb = events.indexOfFirst { it is RtfEvent.Command && it.command == Command.pagebb }
+        assertEquals(1, events.count { it is RtfEvent.Command && it.command == Command.pagebb })
+        val cover = events.indexOf(RtfEvent.Text("Cover"))
+        val title = events.indexOf(RtfEvent.Text("Title"))
+        assertTrue(cover >= 0, "missing cover text in $events")
+        assertTrue(title >= 0, "missing title text in $events")
+        assertTrue(cover < pagebb && pagebb < title, "\\pagebb not between cover and title in $events")
+        assertEquals("Cover\nTitle\n", extractPlainText(bytes))
     }
 
     @Test

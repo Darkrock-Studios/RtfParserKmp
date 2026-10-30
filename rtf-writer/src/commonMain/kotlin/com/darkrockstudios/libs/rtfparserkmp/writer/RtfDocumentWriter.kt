@@ -127,6 +127,7 @@ class RtfDocumentWriter {
         if (style.leftIndentTwips != 0) sb.append("\\li").append(style.leftIndentTwips)
         if (style.firstLineIndentTwips != 0) sb.append("\\fi").append(style.firstLineIndentTwips)
         if (style.keepWithNext) sb.append("\\keepn")
+        if (style.pageBreakBefore) sb.append("\\pagebb")
         style.bottomBorder?.let {
             sb.append("\\brdrb").append(it.style.keyword).append("\\brdrw").append(it.widthTwips)
         }
