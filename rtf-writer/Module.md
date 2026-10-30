@@ -49,7 +49,7 @@ RtfDocument
     ├── RtfPageBreak                      // \page
     ├── RtfPicture(bytes, format, size, style)   // a PNG/JPEG {\pict ...} in its own paragraph
     └── RtfParagraph
-        ├── style: RtfParagraphStyle      // alignment, spacing, indents, keepWithNext, bottomBorder
+        ├── style: RtfParagraphStyle      // alignment, spacing, indents, keepWithNext, bottomBorder, pageBreakBefore
         └── content: List<RtfInline>
             ├── RtfTextRun(text, RtfSpanStyle)   // bold/italic/underline/strike/super/sub, font, size, color
             ├── RtfLineBreak                     // \line
@@ -206,6 +206,23 @@ RtfPicture(
     heightPx = 800,
     goalWidthTwips = goalWidth,                     // height follows: 4368 twips
     style = RtfParagraphStyle(alignment = RtfAlignment.Center),
+)
+```
+
+**Page breaks**: put `RtfPageBreak` between blocks for a standalone break. When a paragraph should
+start the new page, set `pageBreakBefore` on it instead (`\pagebb`). A bare `\page` becomes a break
+character at the start of the next paragraph, and Word lays out that first line, including the
+paragraph's space-before, on the current page; after a page-filling picture that line spills over and
+the paragraph lands one page later than intended. Do not put an `RtfPageBreak` directly before a
+`pageBreakBefore` paragraph: the paragraph then breaks twice and leaves a blank page.
+
+```kotlin
+listOf(
+    cover,                                          // an RtfPicture filling the first page
+    RtfParagraph(
+        listOf(RtfTextRun("Title")),
+        RtfParagraphStyle(spaceBeforeTwips = 2880, pageBreakBefore = true),
+    ),
 )
 ```
 

@@ -87,10 +87,11 @@ class RtfPictureTest {
             firstLineIndentTwips = -360,
             keepWithNext = true,
             bottomBorder = RtfBorder(),
+            pageBreakBefore = true,
         )
         val picture = write(RtfPicture(PNG_SIGNATURE, RtfPictureFormat.Png, 1, 1, style = style))
         val paragraph = write(RtfParagraph(listOf(RtfTextRun("x")), style))
-        val prefix = "\\pard\\qr\\sb120\\sa240\\li720\\fi-360\\keepn\\brdrb\\brdrs\\brdrw10 "
+        val prefix = "\\pard\\qr\\sb120\\sa240\\li720\\fi-360\\keepn\\pagebb\\brdrb\\brdrs\\brdrw10 "
         assertEquals("$TIMES_HEADER\\fs24\n$prefix{x}\\par\n}", paragraph)
         assertEquals(
             "$TIMES_HEADER\\fs24\n$prefix" +
